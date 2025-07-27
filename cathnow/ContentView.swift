@@ -2,328 +2,374 @@ import SwiftUI
 import UserNotifications
 
 
+
 struct ContentView: View {
     @State private var intervalText = "4:00"
-    @State private var isActive = false
-    @State private var showAlert = false
-    @State private var alertMessage = ""
-    @State private var nextAlarmDate: Date?
-    @State private var timer: Timer?
+    @State private var nextAlertDate: Date?
+    @State private var intervalSeconds: TimeInterval = 0
+    @State private var countdownText = "No alarm set"
+    @State private var statusText = "Ready to set alarm"
+    @State private var showingErrorAlert = false
+    @State private var errorMessage = ""
+    
+    // Timer to update countdown every second for real-time updates
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        GeometryReader { geometry in
+        NavigationStack {
             ZStack {
                 // Medical gradient background
                 LinearGradient(
                     colors: [
-                        Color(red: 0.94, green: 0.96, blue: 0.98),
-                        Color(red: 0.88, green: 0.94, blue: 0.96)
+                        Color(red: 0.95, green: 0.97, blue: 1.0),
+                        Color(red: 0.98, green: 0.99, blue: 1.0)
                     ],
                     startPoint: .topLeading,
                     endPoint: .bottomTrailing
                 )
                 .ignoresSafeArea()
                 
-                VStack(spacing: 30) {
-                    // Header
-                    VStack(spacing: 8) {
-                        Image(systemName: "cross.circle.fill")
-                            .font(.system(size: 50))
-                            .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.8))
-                        
-                        Text("Cath Now")
-                            .font(.system(size: 32, weight: .bold, design: .rounded))
-                            .foregroundColor(Color(red: 0.1, green: 0.3, blue: 0.5))
-                        
-                        Text("Catheter Reminder System")
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(Color(red: 0.4, green: 0.5, blue: 0.6))
-                    }
-                    .padding(.top, 20)
-                    
-                    Spacer()
-                    
-                    // Main content card
+                ScrollView {
                     VStack(spacing: 25) {
-                        VStack(spacing: 12) {
-                            Text("Enter the alarm interval in the format HH:MM")
-                                .font(.system(size: 18, weight: .medium))
-                                .foregroundColor(Color(red: 0.2, green: 0.3, blue: 0.4))
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal)
+                        // Header Section
+                        VStack(spacing: 15) {
+                            Image(systemName: "cross.circle.fill")
+                                .font(.system(size: 40))
+                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
                             
-                            // Status indicator
-                            HStack {
-                                Circle()
-                                    .fill(isActive ? Color.green : Color.gray)
-                                    .frame(width: 12, height: 12)
-                                
-                                Text(isActive ? "Active" : "Inactive")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(isActive ? Color.green : Color.gray)
-                            }
+                            Text("Cath Now")
+                                .font(.system(size: 36, weight: .bold, design: .rounded))
+                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
                         }
+                        .padding(.top, 20)
                         
-                        // Input field
-                        VStack(spacing: 8) {
-                            Text("Interval")
-                                .font(.system(size: 14, weight: .semibold))
-                                .foregroundColor(Color(red: 0.3, green: 0.4, blue: 0.5))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            TextField("4:00", text: $intervalText)
-                                .font(.system(size: 24, weight: .medium, design: .monospaced))
-                                .foregroundColor(Color(red: 0.1, green: 0.3, blue: 0.5))
-                                .padding(.horizontal, 16)
-                                .padding(.vertical, 12)
-                                .background(Color.white)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .stroke(Color(red: 0.7, green: 0.8, blue: 0.9), lineWidth: 2)
-                                )
-                                .cornerRadius(12)
-                                .textFieldStyle(PlainTextFieldStyle())
-                        }
-                        .padding(.horizontal, 20)
-                        
-                        // Start button
-                        Button(action: startAlarms) {
-                            HStack(spacing: 12) {
-                                Image(systemName: "alarm.fill")
-                                    .font(.system(size: 18, weight: .semibold))
-                                
-                                Text("Start")
-                                    .font(.system(size: 20, weight: .semibold))
-                            }
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
-                            .background(
-                                LinearGradient(
-                                    colors: [
-                                        Color(red: 0.2, green: 0.6, blue: 0.8),
-                                        Color(red: 0.1, green: 0.5, blue: 0.7)
-                                    ],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .cornerRadius(16)
-                            .shadow(color: Color(red: 0.2, green: 0.6, blue: 0.8).opacity(0.3), radius: 8, x: 0, y: 4)
-                        }
-                        .padding(.horizontal, 20)
-                        
-                        // Next alarm countdown
-                        if isActive, let nextAlarm = nextAlarmDate {
-                            VStack(spacing: 8) {
-                                Text("Time Until Next Reminder")
-                                    .font(.system(size: 14, weight: .medium))
-                                    .foregroundColor(Color(red: 0.5, green: 0.6, blue: 0.7))
-                                
-                                HStack(spacing: 16) {
-                                    let countdown = getCountdownComponents(to: nextAlarm)
+                        // Input Section
+                        GroupBox {
+                            VStack(spacing: 20) {
+                                HStack {
+                                    Image(systemName: "clock.circle.fill")
+                                        .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                        .font(.title2)
                                     
-                                    CountdownComponent(value: countdown.hours, label: "Hours")
-                                    CountdownComponent(value: countdown.minutes, label: "Minutes")
-                                    CountdownComponent(value: countdown.seconds, label: "Seconds")
+                                    Text("Alarm Interval")
+                                        .font(.headline)
+                                        .foregroundStyle(.primary)
+                                    
+                                    Spacer()
+                                }
+                                
+                                Text("Enter the alarm interval in the format HH:MM")
+                                    .font(.subheadline)
+                                    .foregroundStyle(.secondary)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                
+                                HStack {
+                                    Spacer()
+                                    
+                                    TextField("HH:MM", text: $intervalText)
+                                        .font(.system(size: 24, weight: .semibold, design: .monospaced))
+                                        .multilineTextAlignment(.center)
+                                        .frame(width: 120, height: 50)
+                                        .background(.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 12)
+                                                .stroke(Color(red: 0.2, green: 0.4, blue: 0.8), lineWidth: 2)
+                                        )
+                                        .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
+                                    
+                                    Spacer()
+                                }
+                                
+                                Button(action: startButtonTapped) {
+                                    HStack {
+                                        Image(systemName: "play.circle.fill")
+                                            .font(.title2)
+                                        Text("Start Alarm")
+                                            .font(.headline)
+                                    }
+                                    .foregroundStyle(.white)
+                                    .frame(maxWidth: .infinity, minHeight: 50)
+                                    .background(
+                                        LinearGradient(
+                                            colors: [
+                                                Color(red: 0.2, green: 0.4, blue: 0.8),
+                                                Color(red: 0.15, green: 0.35, blue: 0.75)
+                                            ],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                                    .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                                .scaleEffect(1.0)
+                                .animation(.easeInOut(duration: 0.1), value: showingErrorAlert)
+                            }
+                            .padding(20)
+                        } label: {
+                            Label("Alarm Configuration", systemImage: "gear.badge")
+                                .font(.headline)
+                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                        }
+                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        
+                        // Status Section
+                        GroupBox {
+                            VStack(spacing: 20) {
+                                HStack {
+                                    Image(systemName: "timer.circle.fill")
+                                        .foregroundStyle(Color(red: 0.8, green: 0.2, blue: 0.2))
+                                        .font(.title2)
+                                    
+                                    Text("Next Alarm")
+                                        .font(.headline)
+                                        .foregroundStyle(.primary)
+                                    
+                                    Spacer()
+                                }
+                                
+                                VStack(spacing: 15) {
+                                    Text(countdownText)
+                                        .font(.system(size: 32, weight: .bold, design: .monospaced))
+                                        .foregroundStyle(
+                                            countdownText == "No alarm set" ?
+                                                .secondary : Color(red: 0.8, green: 0.2, blue: 0.2)
+                                        )
+                                        .contentTransition(.numericText())
+                                    
+                                    Divider()
+                                        .background(Color(red: 0.2, green: 0.4, blue: 0.8).opacity(0.3))
+                                    
+                                    HStack {
+                                        Image(systemName: statusText.contains("active") ? "checkmark.circle.fill" : "circle")
+                                            .foregroundStyle(statusText.contains("active") ? .green : .secondary)
+                                            .font(.title3)
+                                        
+                                        Text(statusText)
+                                            .font(.subheadline)
+                                            .foregroundStyle(.secondary)
+                                        
+                                        Spacer()
+                                    }
                                 }
                             }
-                            .padding(.horizontal, 20)
-                            .padding(.vertical, 16)
-                            .background(
-                                LinearGradient(
-                                    colors: [
-                                        Color(red: 0.95, green: 0.98, blue: 1.0),
-                                        Color(red: 0.90, green: 0.95, blue: 0.98)
-                                    ],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                            .cornerRadius(16)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 16)
-                                    .stroke(Color(red: 0.2, green: 0.6, blue: 0.8).opacity(0.3), lineWidth: 1)
-                            )
-                            .shadow(color: Color(red: 0.2, green: 0.6, blue: 0.8).opacity(0.1), radius: 4, x: 0, y: 2)
+                            .padding(20)
+                        } label: {
+                            Label("Status Monitor", systemImage: "heart.text.square")
+                                .font(.headline)
+                                .foregroundStyle(Color(red: 0.8, green: 0.2, blue: 0.2))
                         }
+                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        
+                        Spacer(minLength: 20)
                     }
                     .padding(.horizontal, 20)
-                    .padding(.vertical, 30)
-                    .background(Color.white.opacity(0.9))
-                    .cornerRadius(20)
-                    .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
-                    .padding(.horizontal, 20)
-                    
-                    Spacer()
-                    
-                    // Footer
-                    Text("Copyright © 2025 White Acre Software LLC. All rights reserved.")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(Color(red: 0.5, green: 0.6, blue: 0.7))
-                        .padding(.bottom, 20)
                 }
             }
+            .navigationBarHidden(true)
+        }
+        .onReceive(timer) { _ in
+            updateCountdown()
         }
         .onAppear {
-            requestNotificationPermission()
+            updateCountdown()
         }
-        .onDisappear {
-            timer?.invalidate()
-        }
-        .alert("Notification", isPresented: $showAlert) {
-            Button("OK", role: .cancel) { }
+        .alert("Invalid Input", isPresented: $showingErrorAlert) {
+            Button("OK") { }
         } message: {
-            Text(alertMessage)
+            Text(errorMessage)
         }
     }
     
-    func requestNotificationPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if !granted {
-                DispatchQueue.main.async {
-                    self.alertMessage = "Please enable notifications in Settings to receive catheter reminders."
-                    self.showAlert = true
-                }
-            }
-        }
-    }
-    
-    func startAlarms() {
-        // Cancel all existing notifications and timer
-        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
-        timer?.invalidate()
-        
-        // Validate input format
-        guard isValidTimeFormat(intervalText) else {
-            alertMessage = "Please enter time in HH:MM format (e.g., 4:00)"
-            showAlert = true
+    func startButtonTapped() {
+        guard !intervalText.isEmpty else {
+            showErrorNotification(message: "Please enter a valid time interval.")
             return
         }
         
-        // Parse the interval
-        let components = intervalText.split(separator: ":")
+        guard let interval = parseTimeInterval(intervalText) else {
+            showErrorNotification(message: "Please enter time in HH:MM format (e.g., 4:00).")
+            return
+        }
+        
+        // Cancel all existing notifications
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        
+        intervalSeconds = interval
+        scheduleRepeatingNotifications()
+        
+        statusText = "Alarm active - repeats every \(intervalText)"
+        updateCountdown()
+        
+        // Success haptic feedback
+        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+        impactFeedback.impactOccurred()
+    }
+    
+    func parseTimeInterval(_ timeString: String) -> TimeInterval? {
+        let components = timeString.split(separator: ":")
         guard components.count == 2,
               let hours = Int(components[0]),
               let minutes = Int(components[1]),
               hours >= 0, hours <= 23,
               minutes >= 0, minutes <= 59 else {
-            alertMessage = "Invalid time format. Please use HH:MM (e.g., 4:00)"
-            showAlert = true
-            return
+            return nil
         }
         
-        let intervalInSeconds = TimeInterval((hours * 3600) + (minutes * 60))
-        
-        // Minimum interval check (prevent too frequent notifications)
-        if intervalInSeconds < 300 { // 5 minutes minimum
-            alertMessage = "Minimum interval is 5 minutes for safety."
-            showAlert = true
-            return
-        }
-        
-        // Set next alarm date and start timer
-        nextAlarmDate = Date().addingTimeInterval(intervalInSeconds)
-        startCountdownTimer(interval: intervalInSeconds)
-        
-        // Schedule repeating notifications
-        scheduleRepeatingNotifications(interval: intervalInSeconds)
-        
-        isActive = true
-        alertMessage = "Catheter reminders started! You'll receive notifications every \(intervalText)."
-        showAlert = true
+        return TimeInterval(hours * 3600 + minutes * 60)
     }
     
-    
-    func startCountdownTimer(interval: TimeInterval) {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            guard let nextAlarm = nextAlarmDate else { return }
-            
-            // Check if alarm time has passed
-            if Date() >= nextAlarm {
-                // Update to next alarm time
-                nextAlarmDate = nextAlarm.addingTimeInterval(interval)
-            }
-        }
-    }
-    
-    func getCountdownComponents(to date: Date) -> (hours: Int, minutes: Int, seconds: Int) {
-        let timeInterval = max(0, date.timeIntervalSinceNow)
-        let hours = Int(timeInterval) / 3600
-        let minutes = Int(timeInterval) % 3600 / 60
-        let seconds = Int(timeInterval) % 60
-        return (hours, minutes, seconds)
-    }
-    
-    func scheduleRepeatingNotifications(interval: TimeInterval) {
+    func scheduleRepeatingNotifications() {
         let content = UNMutableNotificationContent()
-        content.title = "Cath Now Reminder"
+        content.title = "Cath Now"
         content.body = "Time to cath!"
         content.sound = .default
         content.badge = 1
         
-        // Schedule multiple notifications (iOS limitation workaround)
-        // Schedule up to 64 notifications (iOS limit)
-        for i in 1...60 {
-            let triggerTime = interval * Double(i)
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: triggerTime, repeats: false)
+        // Schedule multiple notifications (iOS limits to 64 pending notifications)
+        let now = Date()
+        nextAlertDate = now.addingTimeInterval(intervalSeconds)
+        
+        for i in 1...50 { // Schedule 50 future notifications
+            let triggerDate = now.addingTimeInterval(intervalSeconds * Double(i))
+            let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: triggerDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
             
-            let request = UNNotificationRequest(
-                identifier: "cathReminder_\(i)",
-                content: content,
-                trigger: trigger
-            )
+            let request = UNNotificationRequest(identifier: "cathAlarm_\(i)", content: content, trigger: trigger)
             
             UNUserNotificationCenter.current().add(request) { error in
                 if let error = error {
-                    print("Error scheduling notification: \(error)")
+                    print("Error scheduling notification \(i): \(error)")
                 }
             }
         }
     }
     
-    func isValidTimeFormat(_ time: String) -> Bool {
-        let pattern = "^([0-9]|[01][0-9]|2[0-3]):([0-5][0-9])$"
-        let regex = try? NSRegularExpression(pattern: pattern)
-        let range = NSRange(location: 0, length: time.utf16.count)
-        return regex?.firstMatch(in: time, options: [], range: range) != nil
+    func updateCountdown() {
+        guard let nextAlert = nextAlertDate, intervalSeconds > 0 else {
+            countdownText = "No alarm set"
+            return
+        }
+        
+        let now = Date()
+        let timeRemaining = nextAlert.timeIntervalSince(now)
+        
+        if timeRemaining <= 0 {
+            // Time to reschedule - move to next interval
+            let newNextAlert = now.addingTimeInterval(intervalSeconds)
+            nextAlertDate = newNextAlert
+            
+            // Recursively call to calculate the new countdown
+            updateCountdown()
+            return
+        }
+        
+        let hours = Int(timeRemaining) / 3600
+        let minutes = (Int(timeRemaining) % 3600) / 60
+        let seconds = Int(timeRemaining) % 60
+        
+        withAnimation(.easeInOut(duration: 0.2)) {
+            countdownText = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        }
     }
     
-    func getNextAlarmTime() -> String {
-        guard let nextAlarm = nextAlarmDate else { return "Not set" }
+    func showErrorNotification(message: String) {
+        errorMessage = message
+        showingErrorAlert = true
         
-        let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        formatter.dateStyle = .none
-        
-        return formatter.string(from: nextAlarm)
+        // Error haptic feedback
+        let notificationFeedback = UINotificationFeedbackGenerator()
+        notificationFeedback.notificationOccurred(.error)
     }
 }
 
-struct CountdownComponent: View {
-    let value: Int
-    let label: String
-    
-    var body: some View {
-        VStack(spacing: 4) {
-            Text("\(value)")
-                .font(.system(size: 28, weight: .bold, design: .monospaced))
-                .foregroundColor(Color(red: 0.2, green: 0.6, blue: 0.8))
-                .frame(width: 60, height: 40)
-                .background(Color.white)
-                .cornerRadius(8)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color(red: 0.8, green: 0.9, blue: 0.95), lineWidth: 1)
-                )
+// MARK: - Custom GroupBox Style
+struct MedicalGroupBoxStyle: GroupBoxStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            configuration.label
+                .font(.headline)
+                .padding(.horizontal, 4)
             
-            Text(label)
-                .font(.system(size: 12, weight: .medium))
-                .foregroundColor(Color(red: 0.5, green: 0.6, blue: 0.7))
+            configuration.content
+        }
+        .padding(16)
+        .background {
+            RoundedRectangle(cornerRadius: 16, style: .continuous)
+                .fill(.white)
+                .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16, style: .continuous)
+                        .stroke(
+                            LinearGradient(
+                                colors: [
+                                    Color(red: 0.2, green: 0.4, blue: 0.8).opacity(0.3),
+                                    Color(red: 0.2, green: 0.4, blue: 0.8).opacity(0.1)
+                                ],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 1
+                        )
+                )
         }
     }
 }
 
-#Preview {
-    ContentView()
+// MARK: - Notification Delegate
+class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound, .badge])
+    }
 }
+
+// MARK: - Preview
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+/*
+ MARK: - Setup Instructions for iOS 16+
+ 
+ 1. Set minimum deployment target to iOS 16.0 in Xcode project settings
+ 
+ 2. Add the following to Info.plist:
+ <key>CFBundleDisplayName</key>
+ <string>Cath Now</string>
+ 
+ <key>NSAppleEventsUsageDescription</key>
+ <string>This app needs notification permission to remind you about catheter changes.</string>
+ 
+ 3. iOS 16+ Features Used:
+ - NavigationStack (replaces NavigationView)
+ - GroupBox with custom styling
+ - contentTransition(.numericText()) for smooth countdown updates
+ - LinearGradient backgrounds
+ - Advanced shadow and overlay modifiers
+ - Haptic feedback integration
+ - SF Symbols 4.0 icons
+ 
+ 4. Enhanced Medical Design:
+ - Grouped UI elements in rounded medical containers
+ - Medical cross icon in header
+ - Status indicators with appropriate colors
+ - Gradient backgrounds and buttons
+ - Professional shadows and borders
+ - Clean typography hierarchy
+ - Haptic feedback for user interactions
+ 
+ 5. Key Improvements:
+ - Custom MedicalGroupBoxStyle for consistent theming
+ - Better visual hierarchy with icons and labels
+ - Smooth animations and transitions
+ - Enhanced error handling with haptic feedback
+ - Professional medical aesthetic
+ - Responsive layout that works on all iOS devices
+ 
+ The app now uses modern iOS 16+ SwiftUI features while maintaining the medical theme with grouped, card-based UI elements that provide a professional healthcare application appearance.
+ */

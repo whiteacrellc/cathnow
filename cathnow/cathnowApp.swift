@@ -8,13 +8,21 @@
 import SwiftUI
 
 @main
-struct cathnowApp: App {
-    let persistenceController = PersistenceController.shared
-
+struct CathNowApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .onAppear {
+                    requestNotificationPermission()
+                }
+        }
+    }
+    
+    func requestNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if let error = error {
+                print("Notification permission error: \(error)")
+            }
         }
     }
 }

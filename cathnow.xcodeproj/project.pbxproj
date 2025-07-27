@@ -7,53 +7,40 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		E269D15B2E36B23F00AB4D58 /* PBXContainerItemProxy */ = {
+		E260B3632E36D1B8000184C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E269D13E2E36B23D00AB4D58 /* Project object */;
+			containerPortal = E260B3482E36D1B7000184C3 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E269D1452E36B23D00AB4D58;
+			remoteGlobalIDString = E260B34F2E36D1B7000184C3;
 			remoteInfo = cathnow;
 		};
-		E269D1652E36B23F00AB4D58 /* PBXContainerItemProxy */ = {
+		E260B36D2E36D1B8000184C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E269D13E2E36B23D00AB4D58 /* Project object */;
+			containerPortal = E260B3482E36D1B7000184C3 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = E269D1452E36B23D00AB4D58;
+			remoteGlobalIDString = E260B34F2E36D1B7000184C3;
 			remoteInfo = cathnow;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E269D1462E36B23D00AB4D58 /* cathnow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cathnow.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E269D15A2E36B23F00AB4D58 /* cathnowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cathnowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E269D1642E36B23F00AB4D58 /* cathnowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cathnowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E260B3502E36D1B7000184C3 /* cathnow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cathnow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E260B3622E36D1B8000184C3 /* cathnowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cathnowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E260B36C2E36D1B8000184C3 /* cathnowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cathnowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E269D16C2E36B23F00AB4D58 /* Exceptions for "cathnow" folder in "cathnow" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = E269D1452E36B23D00AB4D58 /* cathnow */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		E269D1482E36B23D00AB4D58 /* cathnow */ = {
+		E260B3522E36D1B7000184C3 /* cathnow */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				E269D16C2E36B23F00AB4D58 /* Exceptions for "cathnow" folder in "cathnow" target */,
-			);
 			path = cathnow;
 			sourceTree = "<group>";
 		};
-		E269D15D2E36B23F00AB4D58 /* cathnowTests */ = {
+		E260B3652E36D1B8000184C3 /* cathnowTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = cathnowTests;
 			sourceTree = "<group>";
 		};
-		E269D1672E36B23F00AB4D58 /* cathnowUITests */ = {
+		E260B36F2E36D1B8000184C3 /* cathnowUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = cathnowUITests;
 			sourceTree = "<group>";
@@ -61,21 +48,21 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		E269D1432E36B23D00AB4D58 /* Frameworks */ = {
+		E260B34D2E36D1B7000184C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E269D1572E36B23F00AB4D58 /* Frameworks */ = {
+		E260B35F2E36D1B8000184C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E269D1612E36B23F00AB4D58 /* Frameworks */ = {
+		E260B3692E36D1B8000184C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -85,22 +72,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E269D13D2E36B23D00AB4D58 = {
+		E260B3472E36D1B7000184C3 = {
 			isa = PBXGroup;
 			children = (
-				E269D1482E36B23D00AB4D58 /* cathnow */,
-				E269D15D2E36B23F00AB4D58 /* cathnowTests */,
-				E269D1672E36B23F00AB4D58 /* cathnowUITests */,
-				E269D1472E36B23D00AB4D58 /* Products */,
+				E260B3522E36D1B7000184C3 /* cathnow */,
+				E260B3652E36D1B8000184C3 /* cathnowTests */,
+				E260B36F2E36D1B8000184C3 /* cathnowUITests */,
+				E260B3512E36D1B7000184C3 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		E269D1472E36B23D00AB4D58 /* Products */ = {
+		E260B3512E36D1B7000184C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E269D1462E36B23D00AB4D58 /* cathnow.app */,
-				E269D15A2E36B23F00AB4D58 /* cathnowTests.xctest */,
-				E269D1642E36B23F00AB4D58 /* cathnowUITests.xctest */,
+				E260B3502E36D1B7000184C3 /* cathnow.app */,
+				E260B3622E36D1B8000184C3 /* cathnowTests.xctest */,
+				E260B36C2E36D1B8000184C3 /* cathnowUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -108,134 +95,134 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E269D1452E36B23D00AB4D58 /* cathnow */ = {
+		E260B34F2E36D1B7000184C3 /* cathnow */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E269D16D2E36B23F00AB4D58 /* Build configuration list for PBXNativeTarget "cathnow" */;
+			buildConfigurationList = E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnow" */;
 			buildPhases = (
-				E269D1422E36B23D00AB4D58 /* Sources */,
-				E269D1432E36B23D00AB4D58 /* Frameworks */,
-				E269D1442E36B23D00AB4D58 /* Resources */,
+				E260B34C2E36D1B7000184C3 /* Sources */,
+				E260B34D2E36D1B7000184C3 /* Frameworks */,
+				E260B34E2E36D1B7000184C3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				E269D1482E36B23D00AB4D58 /* cathnow */,
+				E260B3522E36D1B7000184C3 /* cathnow */,
 			);
 			name = cathnow;
 			packageProductDependencies = (
 			);
 			productName = cathnow;
-			productReference = E269D1462E36B23D00AB4D58 /* cathnow.app */;
+			productReference = E260B3502E36D1B7000184C3 /* cathnow.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E269D1592E36B23F00AB4D58 /* cathnowTests */ = {
+		E260B3612E36D1B8000184C3 /* cathnowTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E269D1722E36B23F00AB4D58 /* Build configuration list for PBXNativeTarget "cathnowTests" */;
+			buildConfigurationList = E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnowTests" */;
 			buildPhases = (
-				E269D1562E36B23F00AB4D58 /* Sources */,
-				E269D1572E36B23F00AB4D58 /* Frameworks */,
-				E269D1582E36B23F00AB4D58 /* Resources */,
+				E260B35E2E36D1B8000184C3 /* Sources */,
+				E260B35F2E36D1B8000184C3 /* Frameworks */,
+				E260B3602E36D1B8000184C3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E269D15C2E36B23F00AB4D58 /* PBXTargetDependency */,
+				E260B3642E36D1B8000184C3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				E269D15D2E36B23F00AB4D58 /* cathnowTests */,
+				E260B3652E36D1B8000184C3 /* cathnowTests */,
 			);
 			name = cathnowTests;
 			packageProductDependencies = (
 			);
 			productName = cathnowTests;
-			productReference = E269D15A2E36B23F00AB4D58 /* cathnowTests.xctest */;
+			productReference = E260B3622E36D1B8000184C3 /* cathnowTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E269D1632E36B23F00AB4D58 /* cathnowUITests */ = {
+		E260B36B2E36D1B8000184C3 /* cathnowUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E269D1752E36B23F00AB4D58 /* Build configuration list for PBXNativeTarget "cathnowUITests" */;
+			buildConfigurationList = E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnowUITests" */;
 			buildPhases = (
-				E269D1602E36B23F00AB4D58 /* Sources */,
-				E269D1612E36B23F00AB4D58 /* Frameworks */,
-				E269D1622E36B23F00AB4D58 /* Resources */,
+				E260B3682E36D1B8000184C3 /* Sources */,
+				E260B3692E36D1B8000184C3 /* Frameworks */,
+				E260B36A2E36D1B8000184C3 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				E269D1662E36B23F00AB4D58 /* PBXTargetDependency */,
+				E260B36E2E36D1B8000184C3 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				E269D1672E36B23F00AB4D58 /* cathnowUITests */,
+				E260B36F2E36D1B8000184C3 /* cathnowUITests */,
 			);
 			name = cathnowUITests;
 			packageProductDependencies = (
 			);
 			productName = cathnowUITests;
-			productReference = E269D1642E36B23F00AB4D58 /* cathnowUITests.xctest */;
+			productReference = E260B36C2E36D1B8000184C3 /* cathnowUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		E269D13E2E36B23D00AB4D58 /* Project object */ = {
+		E260B3482E36D1B7000184C3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
-					E269D1452E36B23D00AB4D58 = {
+					E260B34F2E36D1B7000184C3 = {
 						CreatedOnToolsVersion = 16.4;
 					};
-					E269D1592E36B23F00AB4D58 = {
+					E260B3612E36D1B8000184C3 = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = E269D1452E36B23D00AB4D58;
+						TestTargetID = E260B34F2E36D1B7000184C3;
 					};
-					E269D1632E36B23F00AB4D58 = {
+					E260B36B2E36D1B8000184C3 = {
 						CreatedOnToolsVersion = 16.4;
-						TestTargetID = E269D1452E36B23D00AB4D58;
+						TestTargetID = E260B34F2E36D1B7000184C3;
 					};
 				};
 			};
-			buildConfigurationList = E269D1412E36B23D00AB4D58 /* Build configuration list for PBXProject "cathnow" */;
+			buildConfigurationList = E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "cathnow" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = E269D13D2E36B23D00AB4D58;
+			mainGroup = E260B3472E36D1B7000184C3;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = E269D1472E36B23D00AB4D58 /* Products */;
+			productRefGroup = E260B3512E36D1B7000184C3 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E269D1452E36B23D00AB4D58 /* cathnow */,
-				E269D1592E36B23F00AB4D58 /* cathnowTests */,
-				E269D1632E36B23F00AB4D58 /* cathnowUITests */,
+				E260B34F2E36D1B7000184C3 /* cathnow */,
+				E260B3612E36D1B8000184C3 /* cathnowTests */,
+				E260B36B2E36D1B8000184C3 /* cathnowUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		E269D1442E36B23D00AB4D58 /* Resources */ = {
+		E260B34E2E36D1B7000184C3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E269D1582E36B23F00AB4D58 /* Resources */ = {
+		E260B3602E36D1B8000184C3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E269D1622E36B23F00AB4D58 /* Resources */ = {
+		E260B36A2E36D1B8000184C3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -245,21 +232,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		E269D1422E36B23D00AB4D58 /* Sources */ = {
+		E260B34C2E36D1B7000184C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E269D1562E36B23F00AB4D58 /* Sources */ = {
+		E260B35E2E36D1B8000184C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E269D1602E36B23F00AB4D58 /* Sources */ = {
+		E260B3682E36D1B8000184C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -269,80 +256,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		E269D15C2E36B23F00AB4D58 /* PBXTargetDependency */ = {
+		E260B3642E36D1B8000184C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E269D1452E36B23D00AB4D58 /* cathnow */;
-			targetProxy = E269D15B2E36B23F00AB4D58 /* PBXContainerItemProxy */;
+			target = E260B34F2E36D1B7000184C3 /* cathnow */;
+			targetProxy = E260B3632E36D1B8000184C3 /* PBXContainerItemProxy */;
 		};
-		E269D1662E36B23F00AB4D58 /* PBXTargetDependency */ = {
+		E260B36E2E36D1B8000184C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E269D1452E36B23D00AB4D58 /* cathnow */;
-			targetProxy = E269D1652E36B23F00AB4D58 /* PBXContainerItemProxy */;
+			target = E260B34F2E36D1B7000184C3 /* cathnow */;
+			targetProxy = E260B36D2E36D1B8000184C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		E269D16E2E36B23F00AB4D58 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = cathnow/cathnow.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQZ63PCG8L;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = cathnow/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.tomw.cathnow;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E269D16F2E36B23F00AB4D58 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = cathnow/cathnow.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BQZ63PCG8L;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = cathnow/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.tomw.cathnow;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		E269D1702E36B23F00AB4D58 /* Debug */ = {
+		E260B3742E36D1B8000184C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -406,7 +333,7 @@
 			};
 			name = Debug;
 		};
-		E269D1712E36B23F00AB4D58 /* Release */ = {
+		E260B3752E36D1B8000184C3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -463,7 +390,63 @@
 			};
 			name = Release;
 		};
-		E269D1732E36B23F00AB4D58 /* Debug */ = {
+		E260B3772E36D1B8000184C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQZ63PCG8L;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.tomw.cathnow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E260B3782E36D1B8000184C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQZ63PCG8L;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = org.tomw.cathnow;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E260B37A2E36D1B8000184C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -482,7 +465,7 @@
 			};
 			name = Debug;
 		};
-		E269D1742E36B23F00AB4D58 /* Release */ = {
+		E260B37B2E36D1B8000184C3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -501,7 +484,7 @@
 			};
 			name = Release;
 		};
-		E269D1762E36B23F00AB4D58 /* Debug */ = {
+		E260B37D2E36D1B8000184C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -518,7 +501,7 @@
 			};
 			name = Debug;
 		};
-		E269D1772E36B23F00AB4D58 /* Release */ = {
+		E260B37E2E36D1B8000184C3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -538,43 +521,43 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E269D1412E36B23D00AB4D58 /* Build configuration list for PBXProject "cathnow" */ = {
+		E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "cathnow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E269D1702E36B23F00AB4D58 /* Debug */,
-				E269D1712E36B23F00AB4D58 /* Release */,
+				E260B3742E36D1B8000184C3 /* Debug */,
+				E260B3752E36D1B8000184C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E269D16D2E36B23F00AB4D58 /* Build configuration list for PBXNativeTarget "cathnow" */ = {
+		E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E269D16E2E36B23F00AB4D58 /* Debug */,
-				E269D16F2E36B23F00AB4D58 /* Release */,
+				E260B3772E36D1B8000184C3 /* Debug */,
+				E260B3782E36D1B8000184C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E269D1722E36B23F00AB4D58 /* Build configuration list for PBXNativeTarget "cathnowTests" */ = {
+		E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnowTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E269D1732E36B23F00AB4D58 /* Debug */,
-				E269D1742E36B23F00AB4D58 /* Release */,
+				E260B37A2E36D1B8000184C3 /* Debug */,
+				E260B37B2E36D1B8000184C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E269D1752E36B23F00AB4D58 /* Build configuration list for PBXNativeTarget "cathnowUITests" */ = {
+		E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnowUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				E269D1762E36B23F00AB4D58 /* Debug */,
-				E269D1772E36B23F00AB4D58 /* Release */,
+				E260B37D2E36D1B8000184C3 /* Debug */,
+				E260B37E2E36D1B8000184C3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = E269D13E2E36B23D00AB4D58 /* Project object */;
+	rootObject = E260B3482E36D1B7000184C3 /* Project object */;
 }
