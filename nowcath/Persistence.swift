@@ -1,6 +1,6 @@
 //
 //  Persistence.swift
-//  cathnow
+//  nowcath
 //
 //  Created by tom whittaker on 7/27/25.
 //
@@ -32,7 +32,7 @@ struct PersistenceController {
     let container: NSPersistentContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "cathnow")
+        container = NSPersistentContainer(name: "nowcath")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
