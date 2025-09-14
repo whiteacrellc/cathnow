@@ -58,7 +58,7 @@ struct ContentView: View {
                                 
                                 Text("Enter the alarm interval in the format HH:MM")
                                     .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
                                     .multilineTextAlignment(.leading)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 
