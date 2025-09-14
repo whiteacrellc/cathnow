@@ -1,8 +1,6 @@
 import SwiftUI
 import UserNotifications
 
-
-
 struct ContentView: View {
     @State private var intervalText = "4:00"
     @State private var nextAlertDate: Date?
@@ -178,7 +176,9 @@ struct ContentView: View {
             updateCountdown()
         }
         .alert("Invalid Input", isPresented: $showingErrorAlert) {
-            Button("OK") { }
+            Button("OK") {
+                // Optional: Add any action when OK is pressed
+            }
         } message: {
             Text(errorMessage)
         }
@@ -353,6 +353,7 @@ struct ContentView_Previews: PreviewProvider {
  - Advanced shadow and overlay modifiers
  - Haptic feedback integration
  - SF Symbols 4.0 icons
+ - Modern alert modifier with message parameter
  
  4. Enhanced Medical Design:
  - Grouped UI elements in rounded medical containers
@@ -370,6 +371,7 @@ struct ContentView_Previews: PreviewProvider {
  - Enhanced error handling with haptic feedback
  - Professional medical aesthetic
  - Responsive layout that works on all iOS devices
+ - Updated alert modifier to use the modern iOS 16+ syntax
  
- The app now uses modern iOS 16+ SwiftUI features while maintaining the medical theme with grouped, card-based UI elements that provide a professional healthcare application appearance.
+ The app now uses the modern iOS 16+ alert syntax that won't show deprecation warnings, while maintaining all the medical theme and functionality.
  */
