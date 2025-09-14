@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E260B34F2E36D1B7000184C3"
-               BuildableName = "cathnow.app"
-               BlueprintName = "cathnow"
-               ReferencedContainer = "container:cathnow.xcodeproj">
+               BuildableName = "nowcath.app"
+               BlueprintName = "nowcath"
+               ReferencedContainer = "container:nowcath.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -36,9 +36,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E260B3612E36D1B8000184C3"
-               BuildableName = "cathnowTests.xctest"
-               BlueprintName = "cathnowTests"
-               ReferencedContainer = "container:cathnow.xcodeproj">
+               BuildableName = "nowcathTests.xctest"
+               BlueprintName = "nowcathTests"
+               ReferencedContainer = "container:nowcath.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E260B36B2E36D1B8000184C3"
-               BuildableName = "cathnowUITests.xctest"
-               BlueprintName = "cathnowUITests"
-               ReferencedContainer = "container:cathnow.xcodeproj">
+               BuildableName = "nowcathUITests.xctest"
+               BlueprintName = "nowcathUITests"
+               ReferencedContainer = "container:nowcath.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -69,9 +69,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E260B34F2E36D1B7000184C3"
-            BuildableName = "cathnow.app"
-            BlueprintName = "cathnow"
-            ReferencedContainer = "container:cathnow.xcodeproj">
+            BuildableName = "nowcath.app"
+            BlueprintName = "nowcath"
+            ReferencedContainer = "container:nowcath.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -86,9 +86,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E260B34F2E36D1B7000184C3"
-            BuildableName = "cathnow.app"
-            BlueprintName = "cathnow"
-            ReferencedContainer = "container:cathnow.xcodeproj">
+            BuildableName = "nowcath.app"
+            BlueprintName = "nowcath"
+            ReferencedContainer = "container:nowcath.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

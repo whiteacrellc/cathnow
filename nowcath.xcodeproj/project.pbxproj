@@ -24,15 +24,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E260B3502E36D1B7000184C3 /* cathnow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cathnow.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E260B3622E36D1B8000184C3 /* cathnowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cathnowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E260B36C2E36D1B8000184C3 /* cathnowUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cathnowUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E260B3502E36D1B7000184C3 /* nowcath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nowcath.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E260B3622E36D1B8000184C3 /* nowcathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nowcathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E260B36C2E36D1B8000184C3 /* nowcathUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nowcathUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		E260B3522E36D1B7000184C3 /* cathnow */ = {
+		E260B3522E36D1B7000184C3 /* nowcath */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = cathnow;
+			path = nowcath;
 			sourceTree = "<group>";
 		};
 		E260B3652E36D1B8000184C3 /* cathnowTests */ = {
@@ -75,7 +75,7 @@
 		E260B3472E36D1B7000184C3 = {
 			isa = PBXGroup;
 			children = (
-				E260B3522E36D1B7000184C3 /* cathnow */,
+				E260B3522E36D1B7000184C3 /* nowcath */,
 				E260B3652E36D1B8000184C3 /* cathnowTests */,
 				E260B36F2E36D1B8000184C3 /* cathnowUITests */,
 				E260B3512E36D1B7000184C3 /* Products */,
@@ -85,9 +85,9 @@
 		E260B3512E36D1B7000184C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E260B3502E36D1B7000184C3 /* cathnow.app */,
-				E260B3622E36D1B8000184C3 /* cathnowTests.xctest */,
-				E260B36C2E36D1B8000184C3 /* cathnowUITests.xctest */,
+				E260B3502E36D1B7000184C3 /* nowcath.app */,
+				E260B3622E36D1B8000184C3 /* nowcathTests.xctest */,
+				E260B36C2E36D1B8000184C3 /* nowcathUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E260B34F2E36D1B7000184C3 /* cathnow */ = {
+		E260B34F2E36D1B7000184C3 /* nowcath */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnow" */;
+			buildConfigurationList = E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcath" */;
 			buildPhases = (
 				E260B34C2E36D1B7000184C3 /* Sources */,
 				E260B34D2E36D1B7000184C3 /* Frameworks */,
@@ -108,18 +108,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				E260B3522E36D1B7000184C3 /* cathnow */,
+				E260B3522E36D1B7000184C3 /* nowcath */,
 			);
-			name = cathnow;
+			name = nowcath;
 			packageProductDependencies = (
 			);
 			productName = cathnow;
-			productReference = E260B3502E36D1B7000184C3 /* cathnow.app */;
+			productReference = E260B3502E36D1B7000184C3 /* nowcath.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E260B3612E36D1B8000184C3 /* cathnowTests */ = {
+		E260B3612E36D1B8000184C3 /* nowcathTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnowTests" */;
+			buildConfigurationList = E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcathTests" */;
 			buildPhases = (
 				E260B35E2E36D1B8000184C3 /* Sources */,
 				E260B35F2E36D1B8000184C3 /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				E260B3652E36D1B8000184C3 /* cathnowTests */,
 			);
-			name = cathnowTests;
+			name = nowcathTests;
 			packageProductDependencies = (
 			);
 			productName = cathnowTests;
-			productReference = E260B3622E36D1B8000184C3 /* cathnowTests.xctest */;
+			productReference = E260B3622E36D1B8000184C3 /* nowcathTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E260B36B2E36D1B8000184C3 /* cathnowUITests */ = {
+		E260B36B2E36D1B8000184C3 /* nowcathUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnowUITests" */;
+			buildConfigurationList = E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcathUITests" */;
 			buildPhases = (
 				E260B3682E36D1B8000184C3 /* Sources */,
 				E260B3692E36D1B8000184C3 /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				E260B36F2E36D1B8000184C3 /* cathnowUITests */,
 			);
-			name = cathnowUITests;
+			name = nowcathUITests;
 			packageProductDependencies = (
 			);
 			productName = cathnowUITests;
-			productReference = E260B36C2E36D1B8000184C3 /* cathnowUITests.xctest */;
+			productReference = E260B36C2E36D1B8000184C3 /* nowcathUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "cathnow" */;
+			buildConfigurationList = E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "nowcath" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E260B34F2E36D1B7000184C3 /* cathnow */,
-				E260B3612E36D1B8000184C3 /* cathnowTests */,
-				E260B36B2E36D1B8000184C3 /* cathnowUITests */,
+				E260B34F2E36D1B7000184C3 /* nowcath */,
+				E260B3612E36D1B8000184C3 /* nowcathTests */,
+				E260B36B2E36D1B8000184C3 /* nowcathUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		E260B3642E36D1B8000184C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E260B34F2E36D1B7000184C3 /* cathnow */;
+			target = E260B34F2E36D1B7000184C3 /* nowcath */;
 			targetProxy = E260B3632E36D1B8000184C3 /* PBXContainerItemProxy */;
 		};
 		E260B36E2E36D1B8000184C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E260B34F2E36D1B7000184C3 /* cathnow */;
+			target = E260B34F2E36D1B7000184C3 /* nowcath */;
 			targetProxy = E260B36D2E36D1B8000184C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -413,7 +413,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.tomw.cathnow;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathnow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -444,7 +444,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = org.tomw.cathnow;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathnow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -467,7 +467,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cathnow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cathnow";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nowcath.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nowcath";
 			};
 			name = Debug;
 		};
@@ -486,7 +486,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cathnow.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cathnow";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nowcath.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nowcath";
 			};
 			name = Release;
 		};
@@ -527,7 +527,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "cathnow" */ = {
+		E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "nowcath" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E260B3742E36D1B8000184C3 /* Debug */,
@@ -536,7 +536,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnow" */ = {
+		E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcath" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E260B3772E36D1B8000184C3 /* Debug */,
@@ -545,7 +545,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnowTests" */ = {
+		E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcathTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E260B37A2E36D1B8000184C3 /* Debug */,
@@ -554,7 +554,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathnowUITests" */ = {
+		E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcathUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E260B37D2E36D1B8000184C3 /* Debug */,

@@ -67,6 +67,7 @@ struct ContentView: View {
                                     
                                     TextField("HH:MM", text: $intervalText)
                                         .font(.system(size: 24, weight: .semibold, design: .monospaced))
+                                        .foregroundColor(.black)
                                         .multilineTextAlignment(.center)
                                         .frame(width: 120, height: 50)
                                         .background(.white)
@@ -82,16 +83,19 @@ struct ContentView: View {
                                 
                                 Button(action: startButtonTapped) {
                                     HStack {
-                                        Image(systemName: "play.circle.fill")
+                                        Image(systemName: statusText.contains("active") ? "arrow.clockwise.circle.fill" : "play.circle.fill")
                                             .font(.title2)
-                                        Text("Start Alarm")
+                                        Text(statusText.contains("active") ? "Update Alarm" : "Start Alarm")
                                             .font(.headline)
                                     }
                                     .foregroundStyle(.white)
                                     .frame(maxWidth: .infinity, minHeight: 50)
                                     .background(
                                         LinearGradient(
-                                            colors: [
+                                            colors: statusText.contains("active") ? [
+                                                Color(red: 0.2, green: 0.7, blue: 0.2),
+                                                Color(red: 0.15, green: 0.65, blue: 0.15)
+                                            ] : [
                                                 Color(red: 0.2, green: 0.4, blue: 0.8),
                                                 Color(red: 0.15, green: 0.35, blue: 0.75)
                                             ],
