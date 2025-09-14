@@ -189,6 +189,9 @@ struct ContentView: View {
     }
     
     func startButtonTapped() {
+        // Hide keyboard
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        
         guard !intervalText.isEmpty else {
             showErrorNotification(message: "Please enter a valid time interval.")
             return
