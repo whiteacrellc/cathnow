@@ -349,8 +349,8 @@ struct ContentView_Previews: PreviewProvider {
  <key>CFBundleDisplayName</key>
  <string>Cath Now</string>
  
- <key>NSAppleEventsUsageDescription</key>
- <string>This app needs notification permission to remind you about catheter changes.</string>
+ <key>NSUserNotificationsUsageDescription</key>
+ <string>This app needs notification permission to remind you about catheter changes when the app is not active.</string>
  
  3. iOS 16+ Features Used:
  - NavigationStack (replaces NavigationView)
