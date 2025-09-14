@@ -152,7 +152,7 @@ struct ContentView: View {
                                         
                                         Text(statusText)
                                             .font(.subheadline)
-                                            .foregroundStyle(.secondary)
+                                            .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
                                         
                                         Spacer()
                                     }
