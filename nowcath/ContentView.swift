@@ -1,5 +1,6 @@
 import SwiftUI
 import UserNotifications
+import AVFoundation
 
 struct ContentView: View {
     @State private var intervalText = "4:00"
@@ -9,9 +10,21 @@ struct ContentView: View {
     @State private var statusText = "Ready to set alarm"
     @State private var showingErrorAlert = false
     @State private var errorMessage = ""
+    @State private var selectedSoundOption = "Alarm 1"
+    @State private var hasAudioPermission = false
+    @State private var showingAudioPermissionAlert = false
+    @State private var showingSettingsMenu = false
+    @State private var showingPrivacyPage = false
+    @State private var showingSoundSettings = false
+    
+    // Audio player for immediate sound feedback
+    @State private var audioPlayer: AVAudioPlayer?
     
     // Timer to update countdown every second for real-time updates
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    // Sound options
+    let soundOptions = ["Alarm 1", "Alarm 2"]
     
     var body: some View {
         NavigationStack {
@@ -31,6 +44,19 @@ struct ContentView: View {
                     VStack(spacing: 25) {
                         // Header Section
                         VStack(spacing: 15) {
+                            HStack {
+                                Spacer()
+                                
+                                Button(action: { showingSettingsMenu = true }) {
+                                    Image(systemName: "ellipsis.circle.fill")
+                                        .font(.title2)
+                                        .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.top, 10)
+                            
                             Image(systemName: "cross.circle.fill")
                                 .font(.system(size: 40))
                                 .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
@@ -58,7 +84,7 @@ struct ContentView: View {
                                 
                                 Text("Enter the alarm interval in the format HH:MM")
                                     .font(.subheadline)
-                                    .foregroundStyle(.secondary)
+                                    .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
                                     .multilineTextAlignment(.leading)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 
@@ -145,16 +171,32 @@ struct ContentView: View {
                                     Divider()
                                         .background(Color(red: 0.2, green: 0.4, blue: 0.8).opacity(0.3))
                                     
-                                    HStack {
-                                        Image(systemName: statusText.contains("active") ? "checkmark.circle.fill" : "circle")
-                                            .foregroundStyle(statusText.contains("active") ? .green : .secondary)
-                                            .font(.title3)
+                                    VStack(spacing: 8) {
+                                        HStack {
+                                            Image(systemName: statusText.contains("active") ? "checkmark.circle.fill" : "circle")
+                                                .foregroundStyle(statusText.contains("active") ? .green : .secondary)
+                                                .font(.title3)
+                                            
+                                            Text(statusText)
+                                                .font(.subheadline)
+                                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                            
+                                            Spacer()
+                                        }
                                         
-                                        Text(statusText)
-                                            .font(.subheadline)
-                                            .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
-                                        
-                                        Spacer()
+                                        if statusText.contains("active") {
+                                            HStack {
+                                                Image(systemName: hasAudioPermission ? "speaker.wave.2" : "speaker.slash")
+                                                    .foregroundStyle(hasAudioPermission ? Color(red: 0.8, green: 0.5, blue: 0.2) : .secondary)
+                                                    .font(.caption)
+                                                
+                                                Text(hasAudioPermission ? "Sound: \(selectedSoundOption)" : "Sound: Disabled")
+                                                    .font(.caption)
+                                                    .foregroundStyle(.secondary)
+                                                
+                                                Spacer()
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -178,6 +220,7 @@ struct ContentView: View {
         }
         .onAppear {
             updateCountdown()
+            checkAudioPermission()
         }
         .alert("Invalid Input", isPresented: $showingErrorAlert) {
             Button("OK") {
@@ -185,6 +228,124 @@ struct ContentView: View {
             }
         } message: {
             Text(errorMessage)
+        }
+        .alert("Audio Setup Required", isPresented: $showingAudioPermissionAlert) {
+            Button("Try Again") {
+                setupAudioSession()
+            }
+            Button("Continue Without Sound", role: .cancel) {
+                hasAudioPermission = false
+            }
+        } message: {
+            Text("Unable to set up audio playback. You can continue using the app with haptic feedback only, or try enabling audio again.")
+        }
+        .confirmationDialog("Settings", isPresented: $showingSettingsMenu, titleVisibility: .visible) {
+            Button("Sound Settings") {
+                showingSoundSettings = true
+            }
+            
+            Button("Privacy Policy") {
+                showingPrivacyPage = true
+            }
+            
+            Button("Cancel", role: .cancel) { }
+        } message: {
+            Text("Choose an option")
+        }
+        .sheet(isPresented: $showingPrivacyPage) {
+            PrivacyView()
+        }
+        .sheet(isPresented: $showingSoundSettings) {
+            SoundSettingsView(
+                selectedSoundOption: $selectedSoundOption,
+                hasAudioPermission: $hasAudioPermission,
+                soundOptions: soundOptions,
+                testSoundAction: testSound,
+                setupAudioAction: setupAudioSession
+            )
+        }
+    }
+    
+    func checkAudioPermission() {
+        // For audio playback (not recording), we don't need microphone permission
+        // We'll use a simpler approach that doesn't require privacy permissions
+        hasAudioPermission = true
+        setupAudioSession()
+    }
+    
+    func openAppSettings() {
+        if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
+            UIApplication.shared.open(settingsURL)
+        }
+    }
+    
+    func setupAudioSession() {
+        do {
+            // Set category to playback only - no microphone access needed
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.allowBluetooth])
+            try AVAudioSession.sharedInstance().setActive(true)
+            hasAudioPermission = true
+        } catch {
+            print("Failed to set up audio session: \(error)")
+            hasAudioPermission = false
+        }
+    }
+    
+    func testSound() {
+        if !hasAudioPermission {
+            // Try to setup audio session again
+            setupAudioSession()
+            if !hasAudioPermission {
+                showingAudioPermissionAlert = true
+                return
+            }
+        }
+        
+        playAlertSound()
+        
+        // Haptic feedback for test
+        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+        impactFeedback.impactOccurred()
+    }
+    
+    func playAlertSound() {
+        guard hasAudioPermission else {
+            // Fallback to haptic feedback only if no audio permission
+            let impactFeedback = UIImpactFeedbackGenerator(style: .heavy)
+            impactFeedback.impactOccurred()
+            return
+        }
+        
+        // Play audio file based on selected sound option
+        let soundFileName: String
+        switch selectedSoundOption {
+        case "Alarm 1":
+            soundFileName = "nowcath/sounds/alarm1.wav"
+        case "Alarm 2":
+            soundFileName = "cathnow/nowcath/sounds/alarm2.wav"
+        default:
+            soundFileName = "sounds/alarm1.wav"
+        }
+        
+        playAudioFile(named: soundFileName)
+    }
+    
+    func playAudioFile(named fileName: String) {
+        guard let soundURL = Bundle.main.url(forResource: fileName.replacingOccurrences(of: ".wav", with: ""), withExtension: "wav", subdirectory: "sounds") else {
+            print("Could not find sound file: \(fileName)")
+            // Fallback to system sound
+            AudioServicesPlaySystemSound(1007)
+            return
+        }
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+            audioPlayer?.prepareToPlay()
+            audioPlayer?.play()
+        } catch {
+            print("Error playing sound file: \(error)")
+            // Fallback to system sound
+            AudioServicesPlaySystemSound(1007)
         }
     }
     
@@ -211,6 +372,11 @@ struct ContentView: View {
         statusText = "Alarm active - repeats every \(intervalText)"
         updateCountdown()
         
+        // Play confirmation sound (if permission available)
+        if hasAudioPermission {
+            playAlertSound()
+        }
+        
         // Success haptic feedback
         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
         impactFeedback.impactOccurred()
@@ -233,8 +399,25 @@ struct ContentView: View {
         let content = UNMutableNotificationContent()
         content.title = "Cath Now"
         content.body = "Time to cath!"
-        content.sound = .default
         content.badge = 1
+        
+        // Set notification sound based on selection
+        let soundFileName: String
+        switch selectedSoundOption {
+        case "Alarm 1":
+            soundFileName = "alarm1.wav"
+        case "Alarm 2":
+            soundFileName = "alarm2.wav"
+        default:
+            soundFileName = "alarm1.wav"
+        }
+        
+        // Try to use custom sound, fallback to default if file doesn't exist
+        if Bundle.main.url(forResource: soundFileName.replacingOccurrences(of: ".wav", with: ""), withExtension: "wav", subdirectory: "sounds") != nil {
+            content.sound = UNNotificationSound(named: UNNotificationSoundName(soundFileName))
+        } else {
+            content.sound = .default
+        }
         
         // Schedule multiple notifications (iOS limits to 64 pending notifications)
         let now = Date()
@@ -268,6 +451,11 @@ struct ContentView: View {
             // Time to reschedule - move to next interval
             let newNextAlert = now.addingTimeInterval(intervalSeconds)
             nextAlertDate = newNextAlert
+            
+            // Play alert sound when countdown reaches zero (if permission available)
+            if hasAudioPermission {
+                playAlertSound()
+            }
             
             // Recursively call to calculate the new countdown
             updateCountdown()
@@ -326,13 +514,6 @@ struct MedicalGroupBoxStyle: GroupBoxStyle {
     }
 }
 
-// MARK: - Notification Delegate
-class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound, .badge])
-    }
-}
-
 // MARK: - Preview
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
@@ -341,7 +522,7 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 /*
- MARK: - Setup Instructions for iOS 16+
+ MARK: - Enhanced Setup Instructions for iOS 16+
  
  1. Set minimum deployment target to iOS 16.0 in Xcode project settings
  
@@ -349,36 +530,45 @@ struct ContentView_Previews: PreviewProvider {
  <key>CFBundleDisplayName</key>
  <string>Cath Now</string>
  
- <key>NSAppleEventsUsageDescription</key>
- <string>This app needs notification permission to remind you about catheter changes.</string>
+ <key>NSUserNotificationsUsageDescription</key>
+ <string>This app needs notification permission to remind you about catheter changes when the app is not active.</string>
  
- 3. iOS 16+ Features Used:
- - NavigationStack (replaces NavigationView)
- - GroupBox with custom styling
- - contentTransition(.numericText()) for smooth countdown updates
- - LinearGradient backgrounds
- - Advanced shadow and overlay modifiers
- - Haptic feedback integration
- - SF Symbols 4.0 icons
- - Modern alert modifier with message parameter
+ <key>NSMicrophoneUsageDescription</key>
+ <string>This app does not access the microphone. It only plays audio alerts.</string>
  
- 4. Enhanced Medical Design:
- - Grouped UI elements in rounded medical containers
- - Medical cross icon in header
- - Status indicators with appropriate colors
- - Gradient backgrounds and buttons
- - Professional shadows and borders
- - Clean typography hierarchy
- - Haptic feedback for user interactions
+ 3. IMPORTANT - Audio File Setup:
+ Create a "sounds" folder in your Xcode project and add these files:
+ - sounds/alarm1.wav (your first alarm sound)
+ - sounds/alarm2.wav (your second alarm sound)
  
- 5. Key Improvements:
- - Custom MedicalGroupBoxStyle for consistent theming
- - Better visual hierarchy with icons and labels
- - Smooth animations and transitions
- - Enhanced error handling with haptic feedback
- - Professional medical aesthetic
- - Responsive layout that works on all iOS devices
- - Updated alert modifier to use the modern iOS 16+ syntax
+ Make sure to:
+ - Add the sounds folder to your Xcode project bundle
+ - Ensure the audio files are included in the app target
+ - Use .wav format for best compatibility with notifications
+ - Keep file sizes reasonable for app bundle size
  
- The app now uses the modern iOS 16+ alert syntax that won't show deprecation warnings, while maintaining all the medical theme and functionality.
+ 4. New Audio Features:
+ - Two selectable alarm sounds: Alarm 1 and Alarm 2
+ - Audio files loaded from app bundle (sounds/alarm1.wav and sounds/alarm2.wav)
+ - Fallback to system sound if audio files are missing
+ - Clean menu-based settings interface
+ - Comprehensive privacy page
+ - Professional medical app design
+ 
+ 5. UI Improvements:
+ - Clean main interface focused on core functionality
+ - Dropdown menu for settings and privacy access
+ - Dedicated sound settings page with test functionality
+ - Audio status indicators throughout the app
+ - Graceful fallback to haptic feedback when audio unavailable
+ 
+ 6. Technical Features:
+ - Uses AVAudioPlayer for reliable audio file playback
+ - Custom notification sounds for scheduled reminders
+ - Proper audio session management
+ - Error handling with system sound fallbacks
+ - Memory-efficient audio loading and playback
+ 
+ The app now provides a professional medical reminder experience with custom audio files
+ and a clean, organized interface suitable for medical use.
  */
