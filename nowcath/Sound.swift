@@ -15,8 +15,12 @@ struct SoundSettingsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // iOS Design System background
-                LinearGradient(colors: [Color.adaptiveBackground(themeManager), Color.adaptiveSurface(themeManager)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                LinearGradient(
+                    colors: [Color.adaptiveBackground(themeManager),
+                             Color.adaptiveSurface(themeManager)],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
                 .ignoresSafeArea()
                 
                 VStack(spacing: 25) {
@@ -64,7 +68,14 @@ struct SoundSettingsView: View {
                                 }
                                 .pickerStyle(SegmentedPickerStyle())
                                 
-                                Button(action: testSoundAction) {
+                                // 🔑 Switch between setup or test
+                                Button(action: {
+                                    if hasAudioPermission {
+                                        testSoundAction()
+                                    } else {
+                                        setupAudioAction()
+                                    }
+                                }) {
                                     HStack {
                                         Image(systemName: hasAudioPermission ? "play.fill" : "speaker.slash.fill")
                                             .font(.iosHeadline)
@@ -232,7 +243,6 @@ struct SoundSettingsView: View {
             Button("Return to Main Screen") {
                 dismiss()
             }
-            
             Button("Cancel", role: .cancel) { }
         } message: {
             Text("Choose an option")
@@ -245,10 +255,16 @@ struct SoundSettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SoundSettingsView(
             selectedSoundOption: .constant("Alarm 1"),
-            hasAudioPermission: .constant(true),
+            hasAudioPermission: .constant(false),
             soundOptions: ["Alarm 1", "Alarm 2"],
-            testSoundAction: {},
-            setupAudioAction: {}
+            testSoundAction: {
+                SoundPlayer.shared.play(soundName: "alarm1")
+            },
+            setupAudioAction: {
+                AudioManager.shared.requestAudioPermission { granted in
+                    print("Audio permission: \(granted)")
+                }
+            }
         )
     }
 }

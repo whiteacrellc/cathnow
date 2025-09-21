@@ -271,7 +271,6 @@ struct ContentView: View {
         // For audio playback (not recording), we don't need microphone permission
         // We'll use a simpler approach that doesn't require privacy permissions
         hasAudioPermission = true
-        setupAudioSession()
     }
     
     func openAppSettings() {
