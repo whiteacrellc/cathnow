@@ -66,7 +66,13 @@ struct SoundSettingsView: View {
                                         Text(option)
                                     }
                                 }
-                                .pickerStyle(SegmentedPickerStyle())
+                                .pickerStyle(MenuPickerStyle())
+                                .background(Color.adaptiveSurface(themeManager))
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(Color.adaptivePrimary(themeManager), lineWidth: 1)
+                                )
                                 
                                 // 🔑 Switch between setup or test
                                 Button(action: {
