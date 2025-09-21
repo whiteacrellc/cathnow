@@ -309,7 +309,7 @@ struct PrivacyView: View {
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 15) {
-                                    Text("If you have questions about this privacy policy or our data practices, please contact White Acre Software LLC.")
+                                    Text("If you have questions about this privacy policy or our data practices, please contact White Acre Software at support@cathnow.com.")
                                         .font(.subheadline)
                                         .foregroundStyle(.primary)
                                     

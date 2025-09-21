@@ -183,48 +183,7 @@ struct SoundSettingsView: View {
                     }
                     .groupBoxStyle(iOSGroupBoxStyle())
                     
-                    // Audio Tips
-                    GroupBox {
-                        VStack(spacing: 15) {
-                            HStack {
-                                Image(systemName: "lightbulb.fill")
-                                    .foregroundStyle(Color.adaptiveWarning(themeManager))
-                                    .font(.title2)
-                                
-                                Text("Audio Tips")
-                                    .font(.iosHeadline)
-                                    .foregroundStyle(Color.adaptiveOnBackground(themeManager))
-                                
-                                Spacer()
-                            }
-                            
-                            VStack(alignment: .leading, spacing: 10) {
-                                Text("• Test different alarm sounds to find what works best for you")
-                                    .font(.iosSubheadline)
-                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
-                                
-                                Text("• Ensure your device volume is at an appropriate level")
-                                    .font(.iosSubheadline)
-                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
-                                
-                                Text("• Both in-app and notification sounds will use your selection")
-                                    .font(.iosSubheadline)
-                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
-                                
-                                Text("• Haptic feedback provides silent alerts when audio is unavailable")
-                                    .font(.iosSubheadline)
-                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
-                            }
-                        }
-                        .padding(20)
-                    } label: {
-                        Label("Usage Tips", systemImage: "questionmark.circle")
-                            .font(.iosHeadline)
-                            .foregroundStyle(Color.adaptiveWarning(themeManager))
-                    }
-                    .groupBoxStyle(iOSGroupBoxStyle())
-                    
-                    Spacer()
+                    Spacer() // The Spacer previously before the Tips is now the last main element in the VStack.
                 }
                 .padding(.horizontal, 20)
             }
@@ -264,12 +223,10 @@ struct SoundSettingsView_Previews: PreviewProvider {
             hasAudioPermission: .constant(false),
             soundOptions: ["Alarm 1", "Alarm 2"],
             testSoundAction: {
-                SoundPlayer.shared.play(soundName: "alarm1")
+                // Assuming SoundPlayer.shared.play(soundName: "alarm1") exists
             },
             setupAudioAction: {
-                AudioManager.shared.requestAudioPermission { granted in
-                    print("Audio permission: \(granted)")
-                }
+                // Assuming AudioManager.shared.requestAudioPermission exists
             }
         )
     }
