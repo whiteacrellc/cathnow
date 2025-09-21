@@ -29,8 +29,8 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Material 3 background
-                Color.material3SurfaceGradient
+                // iOS Design System background
+                Color.iosBackgroundGradient
                 .ignoresSafeArea()
                 
                 ScrollView {
@@ -43,7 +43,7 @@ struct ContentView: View {
                                 Button(action: { showingSettingsMenu = true }) {
                                     Image(systemName: "ellipsis.circle.fill")
                                         .font(.title2)
-                                        .foregroundStyle(Color.material3Primary)
+                                        .foregroundStyle(Color.iosMedicalPrimary)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -52,11 +52,12 @@ struct ContentView: View {
                             
                             Image(systemName: "cross.circle.fill")
                                 .font(.system(size: 40))
-                                .foregroundStyle(Color.material3Primary)
+                                .foregroundStyle(Color.iosMedicalPrimary)
                             
                             Text("Cath Now")
-                                .font(.system(size: 36, weight: .bold, design: .rounded))
-                                .foregroundStyle(Color.material3Primary)
+                                .font(.iosLargeTitle)
+                                .fontWeight(.bold)
+                                .foregroundStyle(Color.iosMedicalPrimary)
                         }
                         .padding(.top, 20)
                         
@@ -65,19 +66,19 @@ struct ContentView: View {
                             VStack(spacing: 20) {
                                 HStack {
                                     Image(systemName: "clock.circle.fill")
-                                        .foregroundStyle(Color.material3Primary)
+                                        .foregroundStyle(Color.iosMedicalPrimary)
                                         .font(.title2)
                                     
                                     Text("Alarm Interval")
-                                        .font(.headline)
-                                        .foregroundStyle(.primary)
+                                        .font(.iosHeadline)
+                                        .foregroundStyle(Color.iosLabel)
                                     
                                     Spacer()
                                 }
                                 
                                 Text("Enter the alarm interval in the format HH:MM")
-                                    .font(.subheadline)
-                                    .foregroundStyle(Color.material3Primary)
+                                    .font(.iosSubheadline)
+                                    .foregroundStyle(Color.iosSecondaryLabel)
                                     .multilineTextAlignment(.leading)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 
@@ -86,16 +87,16 @@ struct ContentView: View {
                                     
                                     TextField("HH:MM", text: $intervalText)
                                         .font(.system(size: 24, weight: .semibold, design: .monospaced))
-                                        .foregroundColor(.black)
+                                        .foregroundColor(Color.iosLabel)
                                         .multilineTextAlignment(.center)
                                         .frame(width: 120, height: 50)
-                                        .background(.white)
-                                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                                        .background(Color.iosSecondarySystemGroupedBackground)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10))
                                         .overlay(
-                                            RoundedRectangle(cornerRadius: 12)
-                                                .stroke(Color.material3Primary, lineWidth: 2)
+                                            RoundedRectangle(cornerRadius: 10)
+                                                .stroke(Color.iosMedicalPrimary, lineWidth: 2)
                                         )
-                                        .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
+                                        .shadow(color: Color.iosSystemFill.opacity(0.2), radius: 2, x: 0, y: 1)
                                     
                                     Spacer()
                                 }
@@ -103,43 +104,37 @@ struct ContentView: View {
                                 Button(action: startButtonTapped) {
                                     HStack {
                                         Image(systemName: statusText.contains("active") ? "arrow.clockwise.circle.fill" : "play.circle.fill")
-                                            .font(.title2)
+                                            .font(.iosHeadline)
                                         Text(statusText.contains("active") ? "Update Alarm" : "Start Alarm")
-                                            .font(.headline)
+                                            .font(.iosHeadline)
                                     }
-                                    .foregroundStyle(.white)
-                                    .frame(maxWidth: .infinity, minHeight: 50)
-                                    .background(
-                                        statusText.contains("active") ?
-                                            Color.material3SuccessGradient :
-                                            Color.material3PrimaryGradient
-                                    )
-                                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                                    .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
                                 }
-                                .buttonStyle(PlainButtonStyle())
+                                .buttonStyle(iOSButtonStyle(
+                                    variant: .filled,
+                                    isDestructive: false
+                                ))
                                 .scaleEffect(1.0)
                                 .animation(.easeInOut(duration: 0.1), value: showingErrorAlert)
                             }
                             .padding(20)
                         } label: {
                             Label("Alarm Configuration", systemImage: "gear.badge")
-                                .font(.headline)
-                                .foregroundStyle(Color.material3Primary)
+                                .font(.iosHeadline)
+                                .foregroundStyle(Color.iosMedicalPrimary)
                         }
-                        .groupBoxStyle(Material3GroupBoxStyle())
+                        .groupBoxStyle(iOSGroupBoxStyle())
                         
                         // Status Section
                         GroupBox {
                             VStack(spacing: 20) {
                                 HStack {
                                     Image(systemName: "timer.circle.fill")
-                                        .foregroundStyle(Color.material3Error)
+                                        .foregroundStyle(Color.iosMedicalError)
                                         .font(.title2)
                                     
                                     Text("Next Alarm")
-                                        .font(.headline)
-                                        .foregroundStyle(.primary)
+                                        .font(.iosHeadline)
+                                        .foregroundStyle(Color.iosLabel)
                                     
                                     Spacer()
                                 }
@@ -149,22 +144,22 @@ struct ContentView: View {
                                         .font(.system(size: 32, weight: .bold, design: .monospaced))
                                         .foregroundStyle(
                                             countdownText == "No alarm set" ?
-                                                Color.material3OnSurfaceVariant : Color.material3Error
+                                                Color.iosSecondaryLabel : Color.iosMedicalError
                                         )
                                         .contentTransition(.numericText())
                                     
                                     Divider()
-                                        .background(Color.material3Outline.opacity(0.3))
+                                        .background(Color.iosSeparator.opacity(0.5))
                                     
                                     VStack(spacing: 8) {
                                         HStack {
                                             Image(systemName: statusText.contains("active") ? "checkmark.circle.fill" : "circle")
-                                                .foregroundStyle(statusText.contains("active") ? Color.material3Success : Color.material3OnSurfaceVariant)
+                                                .foregroundStyle(statusText.contains("active") ? Color.iosMedicalSuccess : Color.iosSecondaryLabel)
                                                 .font(.title3)
                                             
                                             Text(statusText)
-                                                .font(.subheadline)
-                                                .foregroundStyle(Color.material3Primary)
+                                                .font(.iosSubheadline)
+                                                .foregroundStyle(Color.iosMedicalPrimary)
                                             
                                             Spacer()
                                         }
@@ -172,12 +167,12 @@ struct ContentView: View {
                                         if statusText.contains("active") {
                                             HStack {
                                                 Image(systemName: hasAudioPermission ? "speaker.wave.2" : "speaker.slash")
-                                                    .foregroundStyle(hasAudioPermission ? Color.material3Warning : Color.material3OnSurfaceVariant)
+                                                    .foregroundStyle(hasAudioPermission ? Color.iosMedicalWarning : Color.iosSecondaryLabel)
                                                     .font(.caption)
                                                 
                                                 Text(hasAudioPermission ? "Sound: \(selectedSoundOption)" : "Sound: Disabled")
-                                                    .font(.caption)
-                                                    .foregroundStyle(.secondary)
+                                                    .font(.iosCaption1)
+                                                    .foregroundStyle(Color.iosSecondaryLabel)
                                                 
                                                 Spacer()
                                             }
@@ -188,10 +183,10 @@ struct ContentView: View {
                             .padding(20)
                         } label: {
                             Label("Status Monitor", systemImage: "heart.text.square")
-                                .font(.headline)
-                                .foregroundStyle(Color.material3Error)
+                                .font(.iosHeadline)
+                                .foregroundStyle(Color.iosMedicalError)
                         }
-                        .groupBoxStyle(Material3GroupBoxStyle())
+                        .groupBoxStyle(iOSGroupBoxStyle())
                         
                         Spacer(minLength: 20)
                     }
