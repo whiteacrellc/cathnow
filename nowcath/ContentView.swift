@@ -1,6 +1,7 @@
 import SwiftUI
 import UserNotifications
 import AVFoundation
+import AudioToolbox
 
 struct ContentView: View {
     @EnvironmentObject var themeManager: ThemeManager
@@ -25,7 +26,7 @@ struct ContentView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     // Sound options
-    let soundOptions = ["Alarm 1", "Alarm 2"]
+    let soundOptions = ["Alarm 1", "Alarm 2", "System Alert", "System Chime", "System Bell", "Default Ringtone", "Critical Alert", "SMS Tone"]
 
     // MARK: - Theme Management
     private func cycleTheme() {
@@ -316,18 +317,27 @@ struct ContentView: View {
             return
         }
 
-        // Play audio file based on selected sound option
-        let soundFileName: String
+        // Play audio based on selected sound option
         switch selectedSoundOption {
         case "Alarm 1":
-            soundFileName = "alarm1.wav"
+            playAudioFile(named: "alarm1.wav")
         case "Alarm 2":
-            soundFileName = "alarm2.wav"
+            playAudioFile(named: "alarm2.wav")
+        case "System Alert":
+            AudioServicesPlaySystemSound(1007) // System alert sound
+        case "System Chime":
+            AudioServicesPlaySystemSound(1016) // System chime sound
+        case "System Bell":
+            AudioServicesPlaySystemSound(1013) // System bell sound
+        case "Default Ringtone":
+            AudioServicesPlaySystemSound(1005) // Default ringtone sound
+        case "Critical Alert":
+            AudioServicesPlaySystemSound(1006) // System critical alert
+        case "SMS Tone":
+            AudioServicesPlaySystemSound(1007) // SMS received sound
         default:
-            soundFileName = "alarm1.wav"
+            playAudioFile(named: "alarm1.wav")
         }
-
-        playAudioFile(named: soundFileName)
     }
     
     func playAudioFile(named fileName: String) {
@@ -402,20 +412,32 @@ struct ContentView: View {
         content.badge = 1
         
         // Set notification sound based on selection
-        let soundFileName: String
         switch selectedSoundOption {
         case "Alarm 1":
-            soundFileName = "alarm1.wav"
+            if Bundle.main.url(forResource: "alarm1", withExtension: "wav") != nil {
+                content.sound = UNNotificationSound(named: UNNotificationSoundName("alarm1.wav"))
+            } else {
+                content.sound = .default
+            }
         case "Alarm 2":
-            soundFileName = "alarm2.wav"
+            if Bundle.main.url(forResource: "alarm2", withExtension: "wav") != nil {
+                content.sound = UNNotificationSound(named: UNNotificationSoundName("alarm2.wav"))
+            } else {
+                content.sound = .default
+            }
+        case "System Alert":
+            content.sound = .defaultCritical
+        case "System Chime":
+            content.sound = .default
+        case "System Bell":
+            content.sound = .default
+        case "Default Ringtone":
+            content.sound = .defaultRingtone
+        case "Critical Alert":
+            content.sound = .defaultCritical
+        case "SMS Tone":
+            content.sound = .default
         default:
-            soundFileName = "alarm1.wav"
-        }
-        
-        // Try to use custom sound, fallback to default if file doesn't exist
-        if Bundle.main.url(forResource: soundFileName.replacingOccurrences(of: ".wav", with: ""), withExtension: "wav") != nil {
-            content.sound = UNNotificationSound(named: UNNotificationSoundName(soundFileName))
-        } else {
             content.sound = .default
         }
         
