@@ -71,7 +71,7 @@ struct ContentView: View {
                                 .font(.system(size: 40))
                                 .foregroundStyle(Color.adaptivePrimary(themeManager))
                             
-                            Text("Cath Now")
+                            Text("Cath Alert")
                                 .font(.iosLargeTitle)
                                 .fontWeight(.bold)
                                 .foregroundStyle(Color.adaptivePrimary(themeManager))
