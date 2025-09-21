@@ -1,5 +1,3 @@
-Here is the content of the SwiftUI `PrivacyView` converted to Markdown.
-
 # Privacy Policy
 
 **White Acre Software LLC**
@@ -16,7 +14,7 @@ White Acre Software LLC is committed to **protecting your privacy** and ensuring
 
 ## 🚫 Zero Data Collection
 
-White Acre Software LLC **does not collect, store, or transmit any personal data or usage information** from the **Cath Now** application.
+White Acre Software **does not collect, store, or transmit any personal data or usage information** from the **Cath Now** application.
 
 * No personal health information is collected
 * No usage analytics or tracking data is gathered
@@ -71,9 +69,9 @@ The **Cath Now** application is designed as a **reminder tool** to assist with m
 
 ## 📧 Contact Information
 
-If you have questions about this privacy policy or our data practices, please contact **White Acre Software LLC**.
+If you have questions about this privacy policy or our data practices, please contact **White Acre Software** at support@cathnow.com.
 
-**Company: White Acre Software LLC**
+**Company: White Acre Software**
 
 *This privacy policy may be updated to reflect changes in our practices or legal requirements. The effective date will be updated accordingly.*
 
