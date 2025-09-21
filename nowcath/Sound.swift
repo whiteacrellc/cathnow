@@ -3,6 +3,7 @@ import AVFoundation
 
 // MARK: - Sound Settings View
 struct SoundSettingsView: View {
+    @EnvironmentObject var themeManager: ThemeManager
     @Binding var selectedSoundOption: String
     @Binding var hasAudioPermission: Bool
     let soundOptions: [String]
@@ -15,7 +16,7 @@ struct SoundSettingsView: View {
         NavigationStack {
             ZStack {
                 // iOS Design System background
-                Color.iosBackgroundGradient
+                LinearGradient(colors: [Color.adaptiveBackground(themeManager), Color.adaptiveSurface(themeManager)], startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
                 
                 VStack(spacing: 25) {
@@ -23,15 +24,15 @@ struct SoundSettingsView: View {
                     VStack(spacing: 15) {
                         Image(systemName: "speaker.wave.3.fill")
                             .font(.system(size: 40))
-                            .foregroundStyle(Color.iosMedicalWarning)
+                            .foregroundStyle(Color.adaptiveWarning(themeManager))
                         
                         Text("Sound Settings")
                             .font(.iosTitle1Emphasized)
-                            .foregroundStyle(Color.iosMedicalPrimary)
+                            .foregroundStyle(Color.adaptivePrimary(themeManager))
                         
                         Text("Configure Alert Sounds")
                             .font(.iosSubheadline)
-                            .foregroundStyle(Color.iosSecondaryLabel)
+                            .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                     }
                     .padding(.top, 20)
                     
@@ -40,12 +41,12 @@ struct SoundSettingsView: View {
                         VStack(spacing: 20) {
                             HStack {
                                 Image(systemName: "music.note")
-                                    .foregroundStyle(Color.iosMedicalWarning)
+                                    .foregroundStyle(Color.adaptiveWarning(themeManager))
                                     .font(.title2)
                                 
                                 Text("Alert Sound")
                                     .font(.iosHeadline)
-                                    .foregroundStyle(Color.iosLabel)
+                                    .foregroundStyle(Color.adaptiveOnBackground(themeManager))
                                 
                                 Spacer()
                             }
@@ -53,7 +54,7 @@ struct SoundSettingsView: View {
                             VStack(spacing: 15) {
                                 Text("Choose your preferred alarm sound for medical reminders")
                                     .font(.iosSubheadline)
-                                    .foregroundStyle(Color.iosSecondaryLabel)
+                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                     .multilineTextAlignment(.center)
                                 
                                 Picker("Sound Selection", selection: $selectedSoundOption) {
@@ -79,11 +80,11 @@ struct SoundSettingsView: View {
                                 if !hasAudioPermission {
                                     HStack {
                                         Image(systemName: "exclamationmark.triangle.fill")
-                                            .foregroundStyle(Color.iosMedicalWarning)
+                                            .foregroundStyle(Color.adaptiveWarning(themeManager))
                                             .font(.iosCaption1)
                                         Text("Audio setup required for sound alerts. App will use haptic feedback as fallback.")
                                             .font(.iosCaption2)
-                                            .foregroundStyle(Color.iosSecondaryLabel)
+                                            .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                             .multilineTextAlignment(.leading)
                                     }
                                     .padding(.top, 5)
@@ -94,7 +95,7 @@ struct SoundSettingsView: View {
                     } label: {
                         Label("Audio Configuration", systemImage: "slider.horizontal.3")
                             .font(.iosHeadline)
-                            .foregroundStyle(Color.iosMedicalWarning)
+                            .foregroundStyle(Color.adaptiveWarning(themeManager))
                     }
                     .groupBoxStyle(iOSGroupBoxStyle())
                     
@@ -103,12 +104,12 @@ struct SoundSettingsView: View {
                         VStack(spacing: 15) {
                             HStack {
                                 Image(systemName: hasAudioPermission ? "checkmark.circle.fill" : "xmark.circle.fill")
-                                    .foregroundStyle(hasAudioPermission ? Color.iosMedicalSuccess : Color.iosMedicalError)
+                                    .foregroundStyle(hasAudioPermission ? Color.adaptiveSuccess(themeManager) : Color.adaptiveError(themeManager))
                                     .font(.title2)
                                 
                                 Text("Audio Status")
                                     .font(.iosHeadline)
-                                    .foregroundStyle(Color.iosLabel)
+                                    .foregroundStyle(Color.adaptiveOnBackground(themeManager))
                                 
                                 Spacer()
                             }
@@ -120,7 +121,7 @@ struct SoundSettingsView: View {
                                         .fontWeight(.medium)
                                     Text(hasAudioPermission ? "Ready" : "Disabled")
                                         .font(.iosSubheadline)
-                                        .foregroundStyle(hasAudioPermission ? Color.iosMedicalSuccess : Color.iosMedicalError)
+                                        .foregroundStyle(hasAudioPermission ? Color.adaptiveSuccess(themeManager) : Color.adaptiveError(themeManager))
                                     Spacer()
                                 }
                                 
@@ -130,7 +131,7 @@ struct SoundSettingsView: View {
                                         .fontWeight(.medium)
                                     Text(selectedSoundOption)
                                         .font(.iosSubheadline)
-                                        .foregroundStyle(Color.iosSecondaryLabel)
+                                        .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                     Spacer()
                                 }
                                 
@@ -140,7 +141,7 @@ struct SoundSettingsView: View {
                                         .fontWeight(.medium)
                                     Text("Haptic Feedback")
                                         .font(.iosSubheadline)
-                                        .foregroundStyle(Color.iosSecondaryLabel)
+                                        .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                     Spacer()
                                 }
                                 
@@ -151,7 +152,7 @@ struct SoundSettingsView: View {
                                             .fontWeight(.medium)
                                         Text("alarm1.wav, alarm2.wav")
                                             .font(.iosCaption1)
-                                            .foregroundStyle(Color.iosSecondaryLabel)
+                                            .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                         Spacer()
                                     }
                                 }
@@ -161,7 +162,7 @@ struct SoundSettingsView: View {
                     } label: {
                         Label("Current Configuration", systemImage: "info.circle")
                             .font(.iosHeadline)
-                            .foregroundStyle(Color.iosMedicalPrimary)
+                            .foregroundStyle(Color.adaptivePrimary(themeManager))
                     }
                     .groupBoxStyle(iOSGroupBoxStyle())
                     
@@ -170,12 +171,12 @@ struct SoundSettingsView: View {
                         VStack(spacing: 15) {
                             HStack {
                                 Image(systemName: "lightbulb.fill")
-                                    .foregroundStyle(Color.iosMedicalWarning)
+                                    .foregroundStyle(Color.adaptiveWarning(themeManager))
                                     .font(.title2)
                                 
                                 Text("Audio Tips")
                                     .font(.iosHeadline)
-                                    .foregroundStyle(Color.iosLabel)
+                                    .foregroundStyle(Color.adaptiveOnBackground(themeManager))
                                 
                                 Spacer()
                             }
@@ -183,26 +184,26 @@ struct SoundSettingsView: View {
                             VStack(alignment: .leading, spacing: 10) {
                                 Text("• Test different alarm sounds to find what works best for you")
                                     .font(.iosSubheadline)
-                                    .foregroundStyle(Color.iosSecondaryLabel)
+                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                 
                                 Text("• Ensure your device volume is at an appropriate level")
                                     .font(.iosSubheadline)
-                                    .foregroundStyle(Color.iosSecondaryLabel)
+                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                 
                                 Text("• Both in-app and notification sounds will use your selection")
                                     .font(.iosSubheadline)
-                                    .foregroundStyle(Color.iosSecondaryLabel)
+                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                 
                                 Text("• Haptic feedback provides silent alerts when audio is unavailable")
                                     .font(.iosSubheadline)
-                                    .foregroundStyle(Color.iosSecondaryLabel)
+                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                             }
                         }
                         .padding(20)
                     } label: {
                         Label("Usage Tips", systemImage: "questionmark.circle")
                             .font(.iosHeadline)
-                            .foregroundStyle(Color.iosMedicalWarning)
+                            .foregroundStyle(Color.adaptiveWarning(themeManager))
                     }
                     .groupBoxStyle(iOSGroupBoxStyle())
                     
@@ -215,7 +216,7 @@ struct SoundSettingsView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { showingMainMenu = true }) {
                         Image(systemName: "line.horizontal.3")
-                            .foregroundStyle(Color.iosMedicalPrimary)
+                            .foregroundStyle(Color.adaptivePrimary(themeManager))
                     }
                 }
                 
@@ -223,7 +224,7 @@ struct SoundSettingsView: View {
                     Button("Done") {
                         dismiss()
                     }
-                    .foregroundStyle(Color.iosMedicalPrimary)
+                    .foregroundStyle(Color.adaptivePrimary(themeManager))
                 }
             }
         }

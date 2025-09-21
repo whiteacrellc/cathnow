@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct PrivacyView: View {
+    @EnvironmentObject var themeManager: ThemeManager
     @Environment(\.dismiss) private var dismiss
     @State private var showingMainMenu = false
     
@@ -8,7 +9,7 @@ struct PrivacyView: View {
         NavigationStack {
             ZStack {
                 // iOS Design System background
-                Color.iosBackgroundGradient
+                LinearGradient(colors: [Color.adaptiveBackground(themeManager), Color.adaptiveSurface(themeManager)], startPoint: .topLeading, endPoint: .bottomTrailing)
                 .ignoresSafeArea()
                 
                 ScrollView {
@@ -17,15 +18,15 @@ struct PrivacyView: View {
                         VStack(spacing: 15) {
                             Image(systemName: "lock.shield.fill")
                                 .font(.system(size: 40))
-                                .foregroundStyle(Color.iosMedicalPrimary)
+                                .foregroundStyle(Color.adaptivePrimary(themeManager))
                             
                             Text("Privacy Policy")
                                 .font(.iosTitle1Emphasized)
-                                .foregroundStyle(Color.iosMedicalPrimary)
+                                .foregroundStyle(Color.adaptivePrimary(themeManager))
                             
                             Text("White Acre Software LLC")
                                 .font(.iosSubheadline)
-                                .foregroundStyle(Color.iosSecondaryLabel)
+                                .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                         }
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 20)
@@ -35,7 +36,7 @@ struct PrivacyView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "checkmark.shield.fill")
-                                        .foregroundStyle(Color.iosMedicalSuccess)
+                                        .foregroundStyle(Color.adaptiveSuccess(themeManager))
                                         .font(.title2)
                                     
                                     Text("Privacy Commitment")
@@ -61,7 +62,7 @@ struct PrivacyView: View {
                         } label: {
                             Label("Our Commitment", systemImage: "heart.fill")
                                 .font(.headline)
-                                .foregroundStyle(Color.iosMedicalSuccess)
+                                .foregroundStyle(Color.adaptiveSuccess(themeManager))
                         }
                         .groupBoxStyle(iOSGroupBoxStyle())
                         
@@ -70,7 +71,7 @@ struct PrivacyView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "eye.slash.fill")
-                                        .foregroundStyle(Color.iosMedicalPrimary)
+                                        .foregroundStyle(Color.adaptivePrimary(themeManager))
                                         .font(.title2)
                                     
                                     Text("Data Collection")
@@ -107,7 +108,7 @@ struct PrivacyView: View {
                         } label: {
                             Label("Zero Data Collection", systemImage: "hand.raised.fill")
                                 .font(.headline)
-                                .foregroundStyle(Color.iosMedicalPrimary)
+                                .foregroundStyle(Color.adaptivePrimary(themeManager))
                         }
                         .groupBoxStyle(iOSGroupBoxStyle())
                         
@@ -116,7 +117,7 @@ struct PrivacyView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "internaldrive.fill")
-                                        .foregroundStyle(Color.iosMedicalWarning)
+                                        .foregroundStyle(Color.adaptiveWarning(themeManager))
                                         .font(.title2)
                                     
                                     Text("Local Data Storage")
@@ -152,7 +153,7 @@ struct PrivacyView: View {
                         } label: {
                             Label("Local Storage Only", systemImage: "lock.fill")
                                 .font(.headline)
-                                .foregroundStyle(Color.iosMedicalWarning)
+                                .foregroundStyle(Color.adaptiveWarning(themeManager))
                         }
                         .groupBoxStyle(iOSGroupBoxStyle())
                         
@@ -161,7 +162,7 @@ struct PrivacyView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "bell.badge.fill")
-                                        .foregroundStyle(Color.iosMedicalError)
+                                        .foregroundStyle(Color.adaptiveError(themeManager))
                                         .font(.title2)
                                     
                                     Text("System Permissions")
@@ -197,7 +198,7 @@ struct PrivacyView: View {
                         } label: {
                             Label("Minimal Permissions", systemImage: "checkmark.circle.fill")
                                 .font(.headline)
-                                .foregroundStyle(Color.iosMedicalError)
+                                .foregroundStyle(Color.adaptiveError(themeManager))
                         }
                         .groupBoxStyle(iOSGroupBoxStyle())
                         
@@ -206,7 +207,7 @@ struct PrivacyView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "network.slash")
-                                        .foregroundStyle(Color.iosMedicalInfo)
+                                        .foregroundStyle(Color.adaptiveTertiary(themeManager))
                                         .font(.title2)
                                     
                                     Text("Third-Party Services")
@@ -243,7 +244,7 @@ struct PrivacyView: View {
                         } label: {
                             Label("No Third Parties", systemImage: "shield.lefthalf.filled")
                                 .font(.headline)
-                                .foregroundStyle(Color.iosMedicalInfo)
+                                .foregroundStyle(Color.adaptiveTertiary(themeManager))
                         }
                         .groupBoxStyle(iOSGroupBoxStyle())
                         
@@ -252,7 +253,7 @@ struct PrivacyView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "cross.case.fill")
-                                        .foregroundStyle(Color.iosMedicalError)
+                                        .foregroundStyle(Color.adaptiveError(themeManager))
                                         .font(.title2)
                                     
                                     Text("Medical Disclaimer")
@@ -288,7 +289,7 @@ struct PrivacyView: View {
                         } label: {
                             Label("Medical Use Disclaimer", systemImage: "stethoscope")
                                 .font(.headline)
-                                .foregroundStyle(Color.iosMedicalError)
+                                .foregroundStyle(Color.adaptiveError(themeManager))
                         }
                         .groupBoxStyle(iOSGroupBoxStyle())
                         
@@ -297,7 +298,7 @@ struct PrivacyView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "envelope.fill")
-                                        .foregroundStyle(Color.iosMedicalSecondary)
+                                        .foregroundStyle(Color.adaptiveSecondary(themeManager))
                                         .font(.title2)
                                     
                                     Text("Contact Information")
@@ -327,7 +328,7 @@ struct PrivacyView: View {
                         } label: {
                             Label("Contact & Updates", systemImage: "questionmark.circle.fill")
                                 .font(.headline)
-                                .foregroundStyle(Color.iosMedicalSecondary)
+                                .foregroundStyle(Color.adaptiveSecondary(themeManager))
                         }
                         .groupBoxStyle(iOSGroupBoxStyle())
                         
@@ -361,7 +362,7 @@ struct PrivacyView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { showingMainMenu = true }) {
                         Image(systemName: "line.horizontal.3")
-                            .foregroundStyle(Color.iosMedicalPrimary)
+                            .foregroundStyle(Color.adaptivePrimary(themeManager))
                     }
                 }
                 
@@ -369,7 +370,7 @@ struct PrivacyView: View {
                     Button("Done") {
                         dismiss()
                     }
-                    .foregroundStyle(Color.iosMedicalPrimary)
+                    .foregroundStyle(Color.adaptivePrimary(themeManager))
                 }
             }
         }

@@ -4,10 +4,24 @@ import UserNotifications
 @main
 struct CathNowApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+    @StateObject private var themeManager = ThemeManager()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(themeManager)
+                .preferredColorScheme(colorScheme)
+        }
+    }
+
+    private var colorScheme: ColorScheme? {
+        switch themeManager.currentTheme {
+        case .light:
+            return .light
+        case .dark:
+            return .dark
+        case .auto:
+            return nil // Follow system
         }
     }
 }

@@ -3,6 +3,7 @@ import UserNotifications
 import AVFoundation
 
 struct ContentView: View {
+    @EnvironmentObject var themeManager: ThemeManager
     @State private var intervalText = "4:00"
     @State private var nextAlertDate: Date?
     @State private var intervalSeconds: TimeInterval = 0
@@ -25,12 +26,28 @@ struct ContentView: View {
     
     // Sound options
     let soundOptions = ["Alarm 1", "Alarm 2"]
-    
+
+    // MARK: - Theme Management
+    private func cycleTheme() {
+        let themes = ThemeManager.AppTheme.allCases
+        if let currentIndex = themes.firstIndex(of: themeManager.currentTheme) {
+            let nextIndex = (currentIndex + 1) % themes.count
+            themeManager.setTheme(themes[nextIndex])
+        }
+    }
+
     var body: some View {
         NavigationStack {
             ZStack {
-                // iOS Design System background
-                Color.iosBackgroundGradient
+                // Dynamic theme background
+                LinearGradient(
+                    colors: [
+                        Color.adaptiveBackground(themeManager),
+                        Color.adaptiveSurface(themeManager)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
                 .ignoresSafeArea()
                 
                 ScrollView {
@@ -43,7 +60,7 @@ struct ContentView: View {
                                 Button(action: { showingSettingsMenu = true }) {
                                     Image(systemName: "ellipsis.circle.fill")
                                         .font(.title2)
-                                        .foregroundStyle(Color.iosMedicalPrimary)
+                                        .foregroundStyle(Color.adaptivePrimary(themeManager))
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -52,12 +69,12 @@ struct ContentView: View {
                             
                             Image(systemName: "cross.circle.fill")
                                 .font(.system(size: 40))
-                                .foregroundStyle(Color.iosMedicalPrimary)
+                                .foregroundStyle(Color.adaptivePrimary(themeManager))
                             
                             Text("Cath Now")
                                 .font(.iosLargeTitle)
                                 .fontWeight(.bold)
-                                .foregroundStyle(Color.iosMedicalPrimary)
+                                .foregroundStyle(Color.adaptivePrimary(themeManager))
                         }
                         .padding(.top, 20)
                         
@@ -66,19 +83,19 @@ struct ContentView: View {
                             VStack(spacing: 20) {
                                 HStack {
                                     Image(systemName: "clock.circle.fill")
-                                        .foregroundStyle(Color.iosMedicalPrimary)
+                                        .foregroundStyle(Color.adaptivePrimary(themeManager))
                                         .font(.title2)
                                     
                                     Text("Alarm Interval")
                                         .font(.iosHeadline)
-                                        .foregroundStyle(Color.iosLabel)
+                                        .foregroundStyle(Color.adaptiveOnBackground(themeManager))
                                     
                                     Spacer()
                                 }
                                 
                                 Text("Enter the alarm interval in the format HH:MM")
                                     .font(.iosSubheadline)
-                                    .foregroundStyle(Color.iosSecondaryLabel)
+                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                     .multilineTextAlignment(.leading)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 
@@ -87,14 +104,14 @@ struct ContentView: View {
                                     
                                     TextField("HH:MM", text: $intervalText)
                                         .font(.system(size: 24, weight: .semibold, design: .monospaced))
-                                        .foregroundColor(Color.iosLabel)
+                                        .foregroundColor(Color.adaptiveOnBackground(themeManager))
                                         .multilineTextAlignment(.center)
                                         .frame(width: 120, height: 50)
-                                        .background(Color.iosSecondarySystemGroupedBackground)
+                                        .background(Color.adaptiveSurface(themeManager))
                                         .clipShape(RoundedRectangle(cornerRadius: 10))
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 10)
-                                                .stroke(Color.iosMedicalPrimary, lineWidth: 2)
+                                                .stroke(Color.adaptivePrimary(themeManager), lineWidth: 2)
                                         )
                                         .shadow(color: Color.iosSystemFill.opacity(0.2), radius: 2, x: 0, y: 1)
                                     
@@ -120,7 +137,7 @@ struct ContentView: View {
                         } label: {
                             Label("Alarm Configuration", systemImage: "gear.badge")
                                 .font(.iosHeadline)
-                                .foregroundStyle(Color.iosMedicalPrimary)
+                                .foregroundStyle(Color.adaptivePrimary(themeManager))
                         }
                         .groupBoxStyle(iOSGroupBoxStyle())
                         
@@ -129,12 +146,12 @@ struct ContentView: View {
                             VStack(spacing: 20) {
                                 HStack {
                                     Image(systemName: "timer.circle.fill")
-                                        .foregroundStyle(Color.iosMedicalError)
+                                        .foregroundStyle(Color.adaptiveError(themeManager))
                                         .font(.title2)
                                     
                                     Text("Next Alarm")
                                         .font(.iosHeadline)
-                                        .foregroundStyle(Color.iosLabel)
+                                        .foregroundStyle(Color.adaptiveOnBackground(themeManager))
                                     
                                     Spacer()
                                 }
@@ -144,22 +161,22 @@ struct ContentView: View {
                                         .font(.system(size: 32, weight: .bold, design: .monospaced))
                                         .foregroundStyle(
                                             countdownText == "No alarm set" ?
-                                                Color.iosSecondaryLabel : Color.iosMedicalError
+                                                Color.adaptiveOnSurfaceVariant(themeManager) : Color.adaptiveError(themeManager)
                                         )
                                         .contentTransition(.numericText())
                                     
                                     Divider()
-                                        .background(Color.iosSeparator.opacity(0.5))
+                                        .background(Color.adaptiveOutline(themeManager).opacity(0.5))
                                     
                                     VStack(spacing: 8) {
                                         HStack {
                                             Image(systemName: statusText.contains("active") ? "checkmark.circle.fill" : "circle")
-                                                .foregroundStyle(statusText.contains("active") ? Color.iosMedicalSuccess : Color.iosSecondaryLabel)
+                                                .foregroundStyle(statusText.contains("active") ? Color.adaptiveSuccess(themeManager) : Color.adaptiveOnSurfaceVariant(themeManager))
                                                 .font(.title3)
                                             
                                             Text(statusText)
                                                 .font(.iosSubheadline)
-                                                .foregroundStyle(Color.iosMedicalPrimary)
+                                                .foregroundStyle(Color.adaptivePrimary(themeManager))
                                             
                                             Spacer()
                                         }
@@ -167,12 +184,12 @@ struct ContentView: View {
                                         if statusText.contains("active") {
                                             HStack {
                                                 Image(systemName: hasAudioPermission ? "speaker.wave.2" : "speaker.slash")
-                                                    .foregroundStyle(hasAudioPermission ? Color.iosMedicalWarning : Color.iosSecondaryLabel)
+                                                    .foregroundStyle(hasAudioPermission ? Color.adaptiveWarning(themeManager) : Color.adaptiveOnSurfaceVariant(themeManager))
                                                     .font(.caption)
                                                 
                                                 Text(hasAudioPermission ? "Sound: \(selectedSoundOption)" : "Sound: Disabled")
                                                     .font(.iosCaption1)
-                                                    .foregroundStyle(Color.iosSecondaryLabel)
+                                                    .foregroundStyle(Color.adaptiveOnSurfaceVariant(themeManager))
                                                 
                                                 Spacer()
                                             }
@@ -184,7 +201,7 @@ struct ContentView: View {
                         } label: {
                             Label("Status Monitor", systemImage: "heart.text.square")
                                 .font(.iosHeadline)
-                                .foregroundStyle(Color.iosMedicalError)
+                                .foregroundStyle(Color.adaptiveError(themeManager))
                         }
                         .groupBoxStyle(iOSGroupBoxStyle())
                         
@@ -223,11 +240,15 @@ struct ContentView: View {
             Button("Sound Settings") {
                 showingSoundSettings = true
             }
-            
+
+            Button("Theme: \(themeManager.currentTheme.displayName)") {
+                cycleTheme()
+            }
+
             Button("Privacy Policy") {
                 showingPrivacyPage = true
             }
-            
+
             Button("Cancel", role: .cancel) { }
         } message: {
             Text("Choose an option")

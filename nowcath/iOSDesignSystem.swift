@@ -128,11 +128,13 @@ struct iOSSpacing {
 
 // MARK: - iOS Component Styles
 struct iOSGroupBoxStyle: GroupBoxStyle {
+    @EnvironmentObject var themeManager: ThemeManager
+
     func makeBody(configuration: Configuration) -> some View {
         VStack(alignment: .leading, spacing: iOSSpacing.md) {
             configuration.label
                 .font(.iosHeadline)
-                .foregroundStyle(Color.iosMedicalPrimary)
+                .foregroundStyle(Color.adaptivePrimary(themeManager))
                 .padding(.horizontal, iOSSpacing.xs)
 
             configuration.content
@@ -140,11 +142,11 @@ struct iOSGroupBoxStyle: GroupBoxStyle {
         .padding(iOSSpacing.lg)
         .background {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .fill(Color.iosSecondarySystemGroupedBackground)
-                .shadow(color: Color.iosSystemFill.opacity(0.1), radius: 4, x: 0, y: 2)
+                .fill(Color.adaptiveSurface(themeManager))
+                .shadow(color: Color.adaptiveOnSurface(themeManager).opacity(0.1), radius: 4, x: 0, y: 2)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .stroke(Color.iosSeparator.opacity(0.2), lineWidth: 0.5)
+                        .stroke(Color.adaptiveOutline(themeManager).opacity(0.2), lineWidth: 0.5)
                 )
         }
     }
