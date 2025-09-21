@@ -29,15 +29,8 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Medical gradient background
-                LinearGradient(
-                    colors: [
-                        Color(red: 0.95, green: 0.97, blue: 1.0),
-                        Color(red: 0.98, green: 0.99, blue: 1.0)
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
+                // Material 3 background
+                Color.material3SurfaceGradient
                 .ignoresSafeArea()
                 
                 ScrollView {
@@ -50,7 +43,7 @@ struct ContentView: View {
                                 Button(action: { showingSettingsMenu = true }) {
                                     Image(systemName: "ellipsis.circle.fill")
                                         .font(.title2)
-                                        .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                        .foregroundStyle(Color.material3Primary)
                                 }
                                 .buttonStyle(PlainButtonStyle())
                             }
@@ -59,11 +52,11 @@ struct ContentView: View {
                             
                             Image(systemName: "cross.circle.fill")
                                 .font(.system(size: 40))
-                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                .foregroundStyle(Color.material3Primary)
                             
                             Text("Cath Now")
                                 .font(.system(size: 36, weight: .bold, design: .rounded))
-                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                .foregroundStyle(Color.material3Primary)
                         }
                         .padding(.top, 20)
                         
@@ -72,7 +65,7 @@ struct ContentView: View {
                             VStack(spacing: 20) {
                                 HStack {
                                     Image(systemName: "clock.circle.fill")
-                                        .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                        .foregroundStyle(Color.material3Primary)
                                         .font(.title2)
                                     
                                     Text("Alarm Interval")
@@ -84,7 +77,7 @@ struct ContentView: View {
                                 
                                 Text("Enter the alarm interval in the format HH:MM")
                                     .font(.subheadline)
-                                    .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                    .foregroundStyle(Color.material3Primary)
                                     .multilineTextAlignment(.leading)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 
@@ -100,7 +93,7 @@ struct ContentView: View {
                                         .clipShape(RoundedRectangle(cornerRadius: 12))
                                         .overlay(
                                             RoundedRectangle(cornerRadius: 12)
-                                                .stroke(Color(red: 0.2, green: 0.4, blue: 0.8), lineWidth: 2)
+                                                .stroke(Color.material3Primary, lineWidth: 2)
                                         )
                                         .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
                                     
@@ -117,17 +110,9 @@ struct ContentView: View {
                                     .foregroundStyle(.white)
                                     .frame(maxWidth: .infinity, minHeight: 50)
                                     .background(
-                                        LinearGradient(
-                                            colors: statusText.contains("active") ? [
-                                                Color(red: 0.2, green: 0.7, blue: 0.2),
-                                                Color(red: 0.15, green: 0.65, blue: 0.15)
-                                            ] : [
-                                                Color(red: 0.2, green: 0.4, blue: 0.8),
-                                                Color(red: 0.15, green: 0.35, blue: 0.75)
-                                            ],
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        )
+                                        statusText.contains("active") ?
+                                            Color.material3SuccessGradient :
+                                            Color.material3PrimaryGradient
                                     )
                                     .clipShape(RoundedRectangle(cornerRadius: 12))
                                     .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
@@ -140,16 +125,16 @@ struct ContentView: View {
                         } label: {
                             Label("Alarm Configuration", systemImage: "gear.badge")
                                 .font(.headline)
-                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                .foregroundStyle(Color.material3Primary)
                         }
-                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        .groupBoxStyle(Material3GroupBoxStyle())
                         
                         // Status Section
                         GroupBox {
                             VStack(spacing: 20) {
                                 HStack {
                                     Image(systemName: "timer.circle.fill")
-                                        .foregroundStyle(Color(red: 0.8, green: 0.2, blue: 0.2))
+                                        .foregroundStyle(Color.material3Error)
                                         .font(.title2)
                                     
                                     Text("Next Alarm")
@@ -164,22 +149,22 @@ struct ContentView: View {
                                         .font(.system(size: 32, weight: .bold, design: .monospaced))
                                         .foregroundStyle(
                                             countdownText == "No alarm set" ?
-                                                .secondary : Color(red: 0.8, green: 0.2, blue: 0.2)
+                                                Color.material3OnSurfaceVariant : Color.material3Error
                                         )
                                         .contentTransition(.numericText())
                                     
                                     Divider()
-                                        .background(Color(red: 0.2, green: 0.4, blue: 0.8).opacity(0.3))
+                                        .background(Color.material3Outline.opacity(0.3))
                                     
                                     VStack(spacing: 8) {
                                         HStack {
                                             Image(systemName: statusText.contains("active") ? "checkmark.circle.fill" : "circle")
-                                                .foregroundStyle(statusText.contains("active") ? .green : .secondary)
+                                                .foregroundStyle(statusText.contains("active") ? Color.material3Success : Color.material3OnSurfaceVariant)
                                                 .font(.title3)
                                             
                                             Text(statusText)
                                                 .font(.subheadline)
-                                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                                .foregroundStyle(Color.material3Primary)
                                             
                                             Spacer()
                                         }
@@ -187,7 +172,7 @@ struct ContentView: View {
                                         if statusText.contains("active") {
                                             HStack {
                                                 Image(systemName: hasAudioPermission ? "speaker.wave.2" : "speaker.slash")
-                                                    .foregroundStyle(hasAudioPermission ? Color(red: 0.8, green: 0.5, blue: 0.2) : .secondary)
+                                                    .foregroundStyle(hasAudioPermission ? Color.material3Warning : Color.material3OnSurfaceVariant)
                                                     .font(.caption)
                                                 
                                                 Text(hasAudioPermission ? "Sound: \(selectedSoundOption)" : "Sound: Disabled")
@@ -204,9 +189,9 @@ struct ContentView: View {
                         } label: {
                             Label("Status Monitor", systemImage: "heart.text.square")
                                 .font(.headline)
-                                .foregroundStyle(Color(red: 0.8, green: 0.2, blue: 0.2))
+                                .foregroundStyle(Color.material3Error)
                         }
-                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        .groupBoxStyle(Material3GroupBoxStyle())
                         
                         Spacer(minLength: 20)
                     }
@@ -315,23 +300,23 @@ struct ContentView: View {
             impactFeedback.impactOccurred()
             return
         }
-        
+
         // Play audio file based on selected sound option
         let soundFileName: String
         switch selectedSoundOption {
         case "Alarm 1":
-            soundFileName = "nowcath/sounds/alarm1.wav"
+            soundFileName = "alarm1.wav"
         case "Alarm 2":
-            soundFileName = "cathnow/nowcath/sounds/alarm2.wav"
+            soundFileName = "alarm2.wav"
         default:
-            soundFileName = "sounds/alarm1.wav"
+            soundFileName = "alarm1.wav"
         }
-        
+
         playAudioFile(named: soundFileName)
     }
     
     func playAudioFile(named fileName: String) {
-        guard let soundURL = Bundle.main.url(forResource: fileName.replacingOccurrences(of: ".wav", with: ""), withExtension: "wav", subdirectory: "sounds") else {
+        guard let soundURL = Bundle.main.url(forResource: fileName.replacingOccurrences(of: ".wav", with: ""), withExtension: "wav") else {
             print("Could not find sound file: \(fileName)")
             // Fallback to system sound
             AudioServicesPlaySystemSound(1007)
@@ -413,7 +398,7 @@ struct ContentView: View {
         }
         
         // Try to use custom sound, fallback to default if file doesn't exist
-        if Bundle.main.url(forResource: soundFileName.replacingOccurrences(of: ".wav", with: ""), withExtension: "wav", subdirectory: "sounds") != nil {
+        if Bundle.main.url(forResource: soundFileName.replacingOccurrences(of: ".wav", with: ""), withExtension: "wav") != nil {
             content.sound = UNNotificationSound(named: UNNotificationSoundName(soundFileName))
         } else {
             content.sound = .default
@@ -481,38 +466,6 @@ struct ContentView: View {
     }
 }
 
-// MARK: - Custom GroupBox Style
-struct MedicalGroupBoxStyle: GroupBoxStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            configuration.label
-                .font(.headline)
-                .padding(.horizontal, 4)
-            
-            configuration.content
-        }
-        .padding(16)
-        .background {
-            RoundedRectangle(cornerRadius: 16, style: .continuous)
-                .fill(.white)
-                .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 4)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16, style: .continuous)
-                        .stroke(
-                            LinearGradient(
-                                colors: [
-                                    Color(red: 0.2, green: 0.4, blue: 0.8).opacity(0.3),
-                                    Color(red: 0.2, green: 0.4, blue: 0.8).opacity(0.1)
-                                ],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            lineWidth: 1
-                        )
-                )
-        }
-    }
-}
 
 // MARK: - Preview
 struct ContentView_Previews: PreviewProvider {

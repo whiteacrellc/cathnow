@@ -14,15 +14,8 @@ struct SoundSettingsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Medical gradient background
-                LinearGradient(
-                    colors: [
-                        Color(red: 0.95, green: 0.97, blue: 1.0),
-                        Color(red: 0.98, green: 0.99, blue: 1.0)
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
+                // Material 3 background
+                Color.material3SurfaceGradient
                 .ignoresSafeArea()
                 
                 VStack(spacing: 25) {
@@ -30,11 +23,11 @@ struct SoundSettingsView: View {
                     VStack(spacing: 15) {
                         Image(systemName: "speaker.wave.3.fill")
                             .font(.system(size: 40))
-                            .foregroundStyle(Color(red: 0.8, green: 0.5, blue: 0.2))
+                            .foregroundStyle(Color.material3Warning)
                         
                         Text("Sound Settings")
                             .font(.system(size: 28, weight: .bold, design: .rounded))
-                            .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                            .foregroundStyle(Color.material3Primary)
                         
                         Text("Configure Alert Sounds")
                             .font(.subheadline)
@@ -47,7 +40,7 @@ struct SoundSettingsView: View {
                         VStack(spacing: 20) {
                             HStack {
                                 Image(systemName: "music.note")
-                                    .foregroundStyle(Color(red: 0.8, green: 0.5, blue: 0.2))
+                                    .foregroundStyle(Color.material3Warning)
                                     .font(.title2)
                                 
                                 Text("Alert Sound")
@@ -60,7 +53,7 @@ struct SoundSettingsView: View {
                             VStack(spacing: 15) {
                                 Text("Choose your preferred alarm sound for medical reminders")
                                     .font(.subheadline)
-                                    .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                    .foregroundStyle(Color.material3Primary)
                                     .multilineTextAlignment(.center)
                                 
                                 Picker("Sound Selection", selection: $selectedSoundOption) {
@@ -80,17 +73,9 @@ struct SoundSettingsView: View {
                                     .foregroundStyle(.white)
                                     .frame(maxWidth: .infinity, minHeight: 50)
                                     .background(
-                                        LinearGradient(
-                                            colors: hasAudioPermission ? [
-                                                Color(red: 0.8, green: 0.5, blue: 0.2),
-                                                Color(red: 0.75, green: 0.45, blue: 0.15)
-                                            ] : [
-                                                Color(red: 0.8, green: 0.2, blue: 0.2),
-                                                Color(red: 0.75, green: 0.15, blue: 0.15)
-                                            ],
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        )
+                                        hasAudioPermission ?
+                                            Color.material3SuccessGradient :
+                                            Color.material3ErrorGradient
                                     )
                                     .clipShape(RoundedRectangle(cornerRadius: 12))
                                     .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
@@ -115,16 +100,16 @@ struct SoundSettingsView: View {
                     } label: {
                         Label("Audio Configuration", systemImage: "slider.horizontal.3")
                             .font(.headline)
-                            .foregroundStyle(Color(red: 0.8, green: 0.5, blue: 0.2))
+                            .foregroundStyle(Color.material3Warning)
                     }
-                    .groupBoxStyle(MedicalGroupBoxStyle())
+                    .groupBoxStyle(Material3GroupBoxStyle())
                     
                     // Audio Status
                     GroupBox {
                         VStack(spacing: 15) {
                             HStack {
                                 Image(systemName: hasAudioPermission ? "checkmark.circle.fill" : "xmark.circle.fill")
-                                    .foregroundStyle(hasAudioPermission ? .green : .red)
+                                    .foregroundStyle(hasAudioPermission ? Color.material3Success : Color.material3Error)
                                     .font(.title2)
                                 
                                 Text("Audio Status")
@@ -141,7 +126,7 @@ struct SoundSettingsView: View {
                                         .fontWeight(.medium)
                                     Text(hasAudioPermission ? "Ready" : "Disabled")
                                         .font(.subheadline)
-                                        .foregroundStyle(hasAudioPermission ? .green : .red)
+                                        .foregroundStyle(hasAudioPermission ? Color.material3Success : Color.material3Error)
                                     Spacer()
                                 }
                                 
@@ -182,16 +167,16 @@ struct SoundSettingsView: View {
                     } label: {
                         Label("Current Configuration", systemImage: "info.circle")
                             .font(.headline)
-                            .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                            .foregroundStyle(Color.material3Primary)
                     }
-                    .groupBoxStyle(MedicalGroupBoxStyle())
+                    .groupBoxStyle(Material3GroupBoxStyle())
                     
                     // Audio Tips
                     GroupBox {
                         VStack(spacing: 15) {
                             HStack {
                                 Image(systemName: "lightbulb.fill")
-                                    .foregroundStyle(.yellow)
+                                    .foregroundStyle(Color.material3Warning)
                                     .font(.title2)
                                 
                                 Text("Audio Tips")
@@ -223,9 +208,9 @@ struct SoundSettingsView: View {
                     } label: {
                         Label("Usage Tips", systemImage: "questionmark.circle")
                             .font(.headline)
-                            .foregroundStyle(.yellow)
+                            .foregroundStyle(Color.material3Warning)
                     }
-                    .groupBoxStyle(MedicalGroupBoxStyle())
+                    .groupBoxStyle(Material3GroupBoxStyle())
                     
                     Spacer()
                 }
@@ -236,7 +221,7 @@ struct SoundSettingsView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { showingMainMenu = true }) {
                         Image(systemName: "line.horizontal.3")
-                            .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                            .foregroundStyle(Color.material3Primary)
                     }
                 }
                 
@@ -244,7 +229,7 @@ struct SoundSettingsView: View {
                     Button("Done") {
                         dismiss()
                     }
-                    .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                    .foregroundStyle(Color.material3Primary)
                 }
             }
         }

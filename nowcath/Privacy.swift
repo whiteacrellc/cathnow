@@ -7,15 +7,8 @@ struct PrivacyView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Medical gradient background
-                LinearGradient(
-                    colors: [
-                        Color(red: 0.95, green: 0.97, blue: 1.0),
-                        Color(red: 0.98, green: 0.99, blue: 1.0)
-                    ],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
+                // Material 3 background
+                Color.material3SurfaceGradient
                 .ignoresSafeArea()
                 
                 ScrollView {
@@ -24,11 +17,11 @@ struct PrivacyView: View {
                         VStack(spacing: 15) {
                             Image(systemName: "lock.shield.fill")
                                 .font(.system(size: 40))
-                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                .foregroundStyle(Color.material3Primary)
                             
                             Text("Privacy Policy")
                                 .font(.system(size: 28, weight: .bold, design: .rounded))
-                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                .foregroundStyle(Color.material3Primary)
                             
                             Text("White Acre Software LLC")
                                 .font(.subheadline)
@@ -42,7 +35,7 @@ struct PrivacyView: View {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "checkmark.shield.fill")
-                                        .foregroundStyle(.green)
+                                        .foregroundStyle(Color.material3Success)
                                         .font(.title2)
                                     
                                     Text("Privacy Commitment")
@@ -68,16 +61,16 @@ struct PrivacyView: View {
                         } label: {
                             Label("Our Commitment", systemImage: "heart.fill")
                                 .font(.headline)
-                                .foregroundStyle(.green)
+                                .foregroundStyle(Color.material3Success)
                         }
-                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        .groupBoxStyle(Material3GroupBoxStyle())
                         
                         // Data Collection
                         GroupBox {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "eye.slash.fill")
-                                        .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                        .foregroundStyle(Color.material3Primary)
                                         .font(.title2)
                                     
                                     Text("Data Collection")
@@ -114,16 +107,16 @@ struct PrivacyView: View {
                         } label: {
                             Label("Zero Data Collection", systemImage: "hand.raised.fill")
                                 .font(.headline)
-                                .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                                .foregroundStyle(Color.material3Primary)
                         }
-                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        .groupBoxStyle(Material3GroupBoxStyle())
                         
                         // Local Storage
                         GroupBox {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "internaldrive.fill")
-                                        .foregroundStyle(Color(red: 0.8, green: 0.5, blue: 0.2))
+                                        .foregroundStyle(Color.material3Warning)
                                         .font(.title2)
                                     
                                     Text("Local Data Storage")
@@ -159,16 +152,16 @@ struct PrivacyView: View {
                         } label: {
                             Label("Local Storage Only", systemImage: "lock.fill")
                                 .font(.headline)
-                                .foregroundStyle(Color(red: 0.8, green: 0.5, blue: 0.2))
+                                .foregroundStyle(Color.material3Warning)
                         }
-                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        .groupBoxStyle(Material3GroupBoxStyle())
                         
                         // System Permissions
                         GroupBox {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "bell.badge.fill")
-                                        .foregroundStyle(Color(red: 0.8, green: 0.2, blue: 0.2))
+                                        .foregroundStyle(Color.material3Error)
                                         .font(.title2)
                                     
                                     Text("System Permissions")
@@ -204,16 +197,16 @@ struct PrivacyView: View {
                         } label: {
                             Label("Minimal Permissions", systemImage: "checkmark.circle.fill")
                                 .font(.headline)
-                                .foregroundStyle(Color(red: 0.8, green: 0.2, blue: 0.2))
+                                .foregroundStyle(Color.material3Error)
                         }
-                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        .groupBoxStyle(Material3GroupBoxStyle())
                         
                         // Third Party Services
                         GroupBox {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "network.slash")
-                                        .foregroundStyle(.purple)
+                                        .foregroundStyle(Color.material3Tertiary)
                                         .font(.title2)
                                     
                                     Text("Third-Party Services")
@@ -250,16 +243,16 @@ struct PrivacyView: View {
                         } label: {
                             Label("No Third Parties", systemImage: "shield.lefthalf.filled")
                                 .font(.headline)
-                                .foregroundStyle(.purple)
+                                .foregroundStyle(Color.material3Tertiary)
                         }
-                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        .groupBoxStyle(Material3GroupBoxStyle())
                         
                         // Medical Disclaimer
                         GroupBox {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "cross.case.fill")
-                                        .foregroundStyle(Color(red: 0.8, green: 0.2, blue: 0.2))
+                                        .foregroundStyle(Color.material3Error)
                                         .font(.title2)
                                     
                                     Text("Medical Disclaimer")
@@ -295,16 +288,16 @@ struct PrivacyView: View {
                         } label: {
                             Label("Medical Use Disclaimer", systemImage: "stethoscope")
                                 .font(.headline)
-                                .foregroundStyle(Color(red: 0.8, green: 0.2, blue: 0.2))
+                                .foregroundStyle(Color.material3Error)
                         }
-                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        .groupBoxStyle(Material3GroupBoxStyle())
                         
                         // Contact Information
                         GroupBox {
                             VStack(alignment: .leading, spacing: 20) {
                                 HStack {
                                     Image(systemName: "envelope.fill")
-                                        .foregroundStyle(.blue)
+                                        .foregroundStyle(Color.material3Secondary)
                                         .font(.title2)
                                     
                                     Text("Contact Information")
@@ -334,9 +327,9 @@ struct PrivacyView: View {
                         } label: {
                             Label("Contact & Updates", systemImage: "questionmark.circle.fill")
                                 .font(.headline)
-                                .foregroundStyle(.blue)
+                                .foregroundStyle(Color.material3Secondary)
                         }
-                        .groupBoxStyle(MedicalGroupBoxStyle())
+                        .groupBoxStyle(Material3GroupBoxStyle())
                         
                         // Footer
                         VStack(spacing: 10) {
@@ -368,7 +361,7 @@ struct PrivacyView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { showingMainMenu = true }) {
                         Image(systemName: "line.horizontal.3")
-                            .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                            .foregroundStyle(Color.material3Primary)
                     }
                 }
                 
@@ -376,7 +369,7 @@ struct PrivacyView: View {
                     Button("Done") {
                         dismiss()
                     }
-                    .foregroundStyle(Color(red: 0.2, green: 0.4, blue: 0.8))
+                    .foregroundStyle(Color.material3Primary)
                 }
             }
         }
