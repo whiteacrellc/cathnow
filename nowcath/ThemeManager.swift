@@ -2,7 +2,7 @@ import SwiftUI
 
 // MARK: - Theme Manager
 class ThemeManager: ObservableObject {
-    @Published var currentTheme: AppTheme = .light
+    @Published var currentTheme: AppTheme = .dark
 
     enum AppTheme: String, CaseIterable {
         case light = "Light"
@@ -42,162 +42,192 @@ class ThemeManager: ObservableObject {
 
 // MARK: - Dynamic Color System
 extension Color {
-    // MARK: - Primary Colors (Medical Blue)
+    // MARK: - Primary Colors (Material Theme)
     static func dynamicPrimary(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.478, green: 0.678, blue: 1.0) :       // #7AADFF - Lighter blue for dark mode
-            Color(red: 0.0, green: 0.478, blue: 1.0)           // #007AFF - iOS Blue for light mode
+            Color(red: 0.506, green: 0.827, blue: 0.871) :     // #81D3DE - Material dark primary
+            Color(red: 0.0, green: 0.412, blue: 0.447)         // #006972 - Material light primary
     }
 
     static func dynamicOnPrimary(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.0, green: 0.0, blue: 0.0) :           // Black text on light primary
-            Color(red: 1.0, green: 1.0, blue: 1.0)             // White text on dark primary
+            Color(red: 0.0, green: 0.212, blue: 0.235) :       // #00363C - Material dark onPrimary
+            Color(red: 1.0, green: 1.0, blue: 1.0)             // #FFFFFF - Material light onPrimary
     }
 
     static func dynamicPrimaryContainer(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.0, green: 0.294, blue: 0.612) :       // #004B9C - Darker container for dark mode
-            Color(red: 0.816, green: 0.910, blue: 1.0)         // #D0E8FF - Light container for light mode
+            Color(red: 0.0, green: 0.310, blue: 0.337) :       // #004F56 - Material dark primaryContainer
+            Color(red: 0.616, green: 0.941, blue: 0.984)       // #9DF0FB - Material light primaryContainer
     }
 
     static func dynamicOnPrimaryContainer(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.816, green: 0.910, blue: 1.0) :       // Light text on dark container
-            Color(red: 0.0, green: 0.294, blue: 0.612)         // Dark text on light container
+            Color(red: 0.616, green: 0.941, blue: 0.984) :     // #9DF0FB - Material dark onPrimaryContainer
+            Color(red: 0.0, green: 0.310, blue: 0.337)         // #004F56 - Material light onPrimaryContainer
     }
 
-    // MARK: - Secondary Colors (Medical Teal)
+    // MARK: - Secondary Colors (Material Theme)
     static func dynamicSecondary(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.588, green: 0.871, blue: 0.871) :     // #96DEDE - Light teal for dark mode
-            Color(red: 0.188, green: 0.690, blue: 0.780)       // #30B0C7 - Teal for light mode
+            Color(red: 0.694, green: 0.796, blue: 0.812) :     // #B1CBCF - Material dark secondary
+            Color(red: 0.290, green: 0.388, blue: 0.400)       // #4A6366 - Material light secondary
     }
 
     static func dynamicOnSecondary(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.0, green: 0.0, blue: 0.0) :           // Black text
-            Color(red: 1.0, green: 1.0, blue: 1.0)             // White text
+            Color(red: 0.110, green: 0.204, blue: 0.216) :     // #1C3437 - Material dark onSecondary
+            Color(red: 1.0, green: 1.0, blue: 1.0)             // #FFFFFF - Material light onSecondary
     }
 
     static func dynamicSecondaryContainer(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.0, green: 0.435, blue: 0.490) :       // #006F7D - Dark teal container
-            Color(red: 0.698, green: 0.949, blue: 0.976)       // #B2F2F9 - Light teal container
+            Color(red: 0.196, green: 0.294, blue: 0.310) :     // #324B4E - Material dark secondaryContainer
+            Color(red: 0.804, green: 0.906, blue: 0.922)       // #CDE7EB - Material light secondaryContainer
     }
 
-    // MARK: - Tertiary Colors (Medical Purple)
+    static func dynamicOnSecondaryContainer(isDark: Bool) -> Color {
+        return isDark ?
+            Color(red: 0.804, green: 0.906, blue: 0.922) :     // #CDE7EB - Material dark onSecondaryContainer
+            Color(red: 0.196, green: 0.294, blue: 0.310)       // #324B4E - Material light onSecondaryContainer
+    }
+
+    // MARK: - Tertiary Colors (Material Theme)
     static func dynamicTertiary(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.871, green: 0.690, blue: 0.871) :     // #DEB0DE - Light purple for dark mode
-            Color(red: 0.686, green: 0.322, blue: 0.871)       // #AF52DE - Purple for light mode
+            Color(red: 0.725, green: 0.776, blue: 0.918) :     // #B9C6EA - Material dark tertiary
+            Color(red: 0.318, green: 0.369, blue: 0.490)       // #515E7D - Material light tertiary
     }
 
-    // MARK: - Error Colors (Medical Red)
+    static func dynamicOnTertiary(isDark: Bool) -> Color {
+        return isDark ?
+            Color(red: 0.137, green: 0.188, blue: 0.302) :     // #23304D - Material dark onTertiary
+            Color(red: 1.0, green: 1.0, blue: 1.0)             // #FFFFFF - Material light onTertiary
+    }
+
+    static func dynamicTertiaryContainer(isDark: Bool) -> Color {
+        return isDark ?
+            Color(red: 0.224, green: 0.275, blue: 0.392) :     // #394664 - Material dark tertiaryContainer
+            Color(red: 0.851, green: 0.886, blue: 1.0)         // #D9E2FF - Material light tertiaryContainer
+    }
+
+    static func dynamicOnTertiaryContainer(isDark: Bool) -> Color {
+        return isDark ?
+            Color(red: 0.851, green: 0.886, blue: 1.0) :       // #D9E2FF - Material dark onTertiaryContainer
+            Color(red: 0.224, green: 0.275, blue: 0.392)       // #394664 - Material light onTertiaryContainer
+    }
+
+    // MARK: - Error Colors (Material Theme)
     static func dynamicError(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 1.0, green: 0.674, blue: 0.678) :       // #FFACAD - Light red for dark mode
-            Color(red: 1.0, green: 0.231, blue: 0.188)         // #FF3B30 - Red for light mode
+            Color(red: 1.0, green: 0.706, blue: 0.671) :       // #FFB4AB - Material dark error
+            Color(red: 0.729, green: 0.102, blue: 0.102)       // #BA1A1A - Material light error
     }
 
     static func dynamicOnError(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.0, green: 0.0, blue: 0.0) :           // Black text
-            Color(red: 1.0, green: 1.0, blue: 1.0)             // White text
+            Color(red: 0.412, green: 0.0, blue: 0.020) :       // #690005 - Material dark onError
+            Color(red: 1.0, green: 1.0, blue: 1.0)             // #FFFFFF - Material light onError
     }
 
     static func dynamicErrorContainer(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.616, green: 0.0, blue: 0.0) :         // #9D0000 - Dark red container
-            Color(red: 1.0, green: 0.898, blue: 0.898)         // #FFE5E5 - Light red container
+            Color(red: 0.576, green: 0.0, blue: 0.039) :       // #93000A - Material dark errorContainer
+            Color(red: 1.0, green: 0.855, blue: 0.839)         // #FFDAD6 - Material light errorContainer
     }
 
-    // MARK: - Success Colors (Medical Green)
+    static func dynamicOnErrorContainer(isDark: Bool) -> Color {
+        return isDark ?
+            Color(red: 1.0, green: 0.855, blue: 0.839) :       // #FFDAD6 - Material dark onErrorContainer
+            Color(red: 0.576, green: 0.0, blue: 0.039)         // #93000A - Material light onErrorContainer
+    }
+
+    // MARK: - Success Colors (Material Theme Compatible)
     static func dynamicSuccess(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.545, green: 0.871, blue: 0.576) :     // #8BDE93 - Light green for dark mode
-            Color(red: 0.204, green: 0.780, blue: 0.349)       // #34C759 - Green for light mode
+            Color(red: 0.694, green: 0.796, blue: 0.812) :     // #B1CBCF - Using secondary for success in dark
+            Color(red: 0.0, green: 0.412, blue: 0.447)         // #006972 - Using primary for success in light
     }
 
     static func dynamicOnSuccess(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.0, green: 0.0, blue: 0.0) :           // Black text
-            Color(red: 1.0, green: 1.0, blue: 1.0)             // White text
+            Color(red: 0.110, green: 0.204, blue: 0.216) :     // #1C3437 - Material theme compatible
+            Color(red: 1.0, green: 1.0, blue: 1.0)             // #FFFFFF - White text
     }
 
     static func dynamicSuccessContainer(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.0, green: 0.490, blue: 0.157) :       // #007D28 - Dark green container
-            Color(red: 0.831, green: 0.976, blue: 0.863)       // #D4F9DC - Light green container
+            Color(red: 0.196, green: 0.294, blue: 0.310) :     // #324B4E - Material theme compatible
+            Color(red: 0.804, green: 0.906, blue: 0.922)       // #CDE7EB - Material theme compatible
     }
 
-    // MARK: - Warning Colors (Medical Orange)
+    // MARK: - Warning Colors (Material Theme Compatible)
     static func dynamicWarning(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 1.0, green: 0.855, blue: 0.545) :       // #FFDA8B - Light orange for dark mode
-            Color(red: 1.0, green: 0.584, blue: 0.0)           // #FF9500 - Orange for light mode
+            Color(red: 0.725, green: 0.776, blue: 0.918) :     // #B9C6EA - Using tertiary for warning in dark
+            Color(red: 0.318, green: 0.369, blue: 0.490)       // #515E7D - Using tertiary for warning in light
     }
 
     static func dynamicOnWarning(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.0, green: 0.0, blue: 0.0) :           // Black text
-            Color(red: 1.0, green: 1.0, blue: 1.0)             // White text
+            Color(red: 0.137, green: 0.188, blue: 0.302) :     // #23304D - Material theme compatible
+            Color(red: 1.0, green: 1.0, blue: 1.0)             // #FFFFFF - White text
     }
 
     static func dynamicWarningContainer(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.612, green: 0.294, blue: 0.0) :       // #9C4B00 - Dark orange container
-            Color(red: 1.0, green: 0.922, blue: 0.816)         // #FFEBCF - Light orange container
+            Color(red: 0.224, green: 0.275, blue: 0.392) :     // #394664 - Material theme compatible
+            Color(red: 0.851, green: 0.886, blue: 1.0)         // #D9E2FF - Material theme compatible
     }
 
-    // MARK: - Background Colors
+    // MARK: - Background Colors (Material Theme)
     static func dynamicBackground(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.071, green: 0.071, blue: 0.071) :     // #121212 - Material Dark background
-            Color(red: 1.0, green: 1.0, blue: 1.0)             // #FFFFFF - White background
+            Color(red: 0.055, green: 0.078, blue: 0.082) :     // #0E1415 - Material dark background
+            Color(red: 0.506, green: 0.827, blue: 0.871)       // #81D3DE - Custom light background
     }
 
     static func dynamicOnBackground(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.898, green: 0.898, blue: 0.898) :     // #E5E5E5 - Light text
-            Color(red: 0.071, green: 0.071, blue: 0.071)       // #121212 - Dark text
+            Color(red: 0.871, green: 0.894, blue: 0.894) :     // #DEE4E4 - Material dark onBackground
+            Color(red: 0.090, green: 0.114, blue: 0.118)       // #171D1E - Material light onBackground
     }
 
     static func dynamicSurface(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.149, green: 0.149, blue: 0.149) :     // #262626 - Dark surface
-            Color(red: 0.980, green: 0.980, blue: 0.980)       // #FAFAFA - Light surface
+            Color(red: 0.055, green: 0.078, blue: 0.082) :     // #0E1415 - Material dark surface
+            Color(red: 0.961, green: 0.980, blue: 0.984)       // #F5FAFB - Material light surface
     }
 
     static func dynamicOnSurface(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.898, green: 0.898, blue: 0.898) :     // #E5E5E5 - Light text
-            Color(red: 0.071, green: 0.071, blue: 0.071)       // #121212 - Dark text
+            Color(red: 0.871, green: 0.894, blue: 0.894) :     // #DEE4E4 - Material dark onSurface
+            Color(red: 0.090, green: 0.114, blue: 0.118)       // #171D1E - Material light onSurface
     }
 
     static func dynamicSurfaceVariant(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.196, green: 0.196, blue: 0.196) :     // #323232 - Dark surface variant
-            Color(red: 0.949, green: 0.949, blue: 0.949)       // #F2F2F2 - Light surface variant
+            Color(red: 0.247, green: 0.282, blue: 0.290) :     // #3F484A - Material dark surfaceVariant
+            Color(red: 0.859, green: 0.894, blue: 0.902)       // #DBE4E6 - Material light surfaceVariant
     }
 
     static func dynamicOnSurfaceVariant(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.784, green: 0.784, blue: 0.784) :     // #C8C8C8 - Medium light text
-            Color(red: 0.294, green: 0.294, blue: 0.294)       // #4B4B4B - Medium dark text
+            Color(red: 0.745, green: 0.784, blue: 0.792) :     // #BEC8CA - Material dark onSurfaceVariant
+            Color(red: 0.247, green: 0.282, blue: 0.290)       // #3F484A - Material light onSurfaceVariant
     }
 
-    // MARK: - Outline Colors
+    // MARK: - Outline Colors (Material Theme)
     static func dynamicOutline(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.471, green: 0.471, blue: 0.471) :     // #787878 - Light outline
-            Color(red: 0.741, green: 0.741, blue: 0.741)       // #BDBDBD - Dark outline
+            Color(red: 0.537, green: 0.573, blue: 0.580) :     // #899294 - Material dark outline
+            Color(red: 0.435, green: 0.475, blue: 0.478)       // #6F797A - Material light outline
     }
 
     static func dynamicOutlineVariant(isDark: Bool) -> Color {
         return isDark ?
-            Color(red: 0.294, green: 0.294, blue: 0.294) :     // #4B4B4B - Darker outline
-            Color(red: 0.898, green: 0.898, blue: 0.898)       // #E5E5E5 - Lighter outline
+            Color(red: 0.247, green: 0.282, blue: 0.290) :     // #3F484A - Material dark outlineVariant
+            Color(red: 0.745, green: 0.784, blue: 0.792)       // #BEC8CA - Material light outlineVariant
     }
 
     // MARK: - Convenience Methods for Current Theme
