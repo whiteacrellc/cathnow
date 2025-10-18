@@ -2,6 +2,7 @@ import SwiftUI
 import UserNotifications
 import AVFoundation
 import AudioToolbox
+import ActivityKit
 
 struct ContentView: View {
     @EnvironmentObject var themeManager: ThemeManager
@@ -18,7 +19,10 @@ struct ContentView: View {
     @State private var showingSettingsMenu = false
     @State private var showingPrivacyPage = false
     @State private var showingSoundSettings = false
-    
+
+    // Live Activity manager
+    @StateObject private var liveActivityManager = LiveActivityManager.shared
+
     // Audio player for immediate sound feedback
     @State private var audioPlayer: AVAudioPlayer?
     
@@ -375,18 +379,32 @@ struct ContentView: View {
         
         // Cancel all existing notifications
         UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+
+        // End any existing Live Activity
+        if #available(iOS 16.1, *) {
+            liveActivityManager.endLiveActivity()
+        }
         
         intervalSeconds = interval
         scheduleRepeatingNotifications()
         
         statusText = "Alarm active - repeats every \(intervalText)"
         updateCountdown()
-        
+
+        // Start Live Activity for Dynamic Island
+        if #available(iOS 16.1, *), let nextAlert = nextAlertDate {
+            liveActivityManager.startLiveActivity(
+                intervalText: intervalText,
+                intervalSeconds: intervalSeconds,
+                nextAlarmTime: nextAlert
+            )
+        }
+
         // Play confirmation sound (if permission available)
         if hasAudioPermission {
             playAlertSound()
         }
-        
+
         // Success haptic feedback
         let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
         impactFeedback.impactOccurred()
@@ -473,12 +491,20 @@ struct ContentView: View {
             // Time to reschedule - move to next interval
             let newNextAlert = now.addingTimeInterval(intervalSeconds)
             nextAlertDate = newNextAlert
-            
+
+            // Update Live Activity with new next alarm time
+            if #available(iOS 16.1, *) {
+                liveActivityManager.updateLiveActivity(
+                    nextAlarmTime: newNextAlert,
+                    intervalText: intervalText
+                )
+            }
+
             // Play alert sound when countdown reaches zero (if permission available)
             if hasAudioPermission {
                 playAlertSound()
             }
-            
+
             // Recursively call to calculate the new countdown
             updateCountdown()
             return
@@ -490,6 +516,14 @@ struct ContentView: View {
         
         withAnimation(.easeInOut(duration: 0.2)) {
             countdownText = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        }
+
+        // Update Live Activity when minute changes (to keep Dynamic Island HH:MM current)
+        if #available(iOS 16.1, *), seconds == 0 { // Update only when minute changes
+            liveActivityManager.updateLiveActivity(
+                nextAlarmTime: nextAlert,
+                intervalText: intervalText
+            )
         }
     }
     
