@@ -6,7 +6,20 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		E23E55612EA407C1000EB726 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23E55602EA407C1000EB726 /* WidgetKit.framework */; };
+		E23E55632EA407C1000EB726 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E23E55622EA407C1000EB726 /* SwiftUI.framework */; };
+		E23E55742EA407C3000EB726 /* CathNowLiveActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E23E555E2EA407C1000EB726 /* CathNowLiveActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
+		E23E55722EA407C3000EB726 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E260B3482E36D1B7000184C3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E23E555D2EA407C1000EB726;
+			remoteInfo = CathNowLiveActivityExtension;
+		};
 		E260B3632E36D1B8000184C3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E260B3482E36D1B7000184C3 /* Project object */;
@@ -23,15 +36,68 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		E23E55792EA407C3000EB726 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E23E55742EA407C3000EB726 /* CathNowLiveActivityExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		E23E555E2EA407C1000EB726 /* CathNowLiveActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CathNowLiveActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E23E55602EA407C1000EB726 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E23E55622EA407C1000EB726 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		E260B3502E36D1B7000184C3 /* nowcath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nowcath.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E260B3622E36D1B8000184C3 /* nowcathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nowcathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E260B36C2E36D1B8000184C3 /* nowcathUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nowcathUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E23E55902EA40A18000EB726 /* Exceptions for "nowcath" folder in "CathNowLiveActivityExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CathNowActivityAttributes.swift,
+			);
+			target = E23E555D2EA407C1000EB726 /* CathNowLiveActivityExtension */;
+		};
+		E2F5D98E2EA4162C00B6430E /* Exceptions for "nowcath" folder in "nowcath" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E260B34F2E36D1B7000184C3 /* nowcath */;
+		};
+		E2F5D9912EA41AF200B6430E /* Exceptions for "CathNowLiveActivity" folder in "CathNowLiveActivityExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = E23E555D2EA407C1000EB726 /* CathNowLiveActivityExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		E23E55642EA407C1000EB726 /* CathNowLiveActivity */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E2F5D9912EA41AF200B6430E /* Exceptions for "CathNowLiveActivity" folder in "CathNowLiveActivityExtension" target */,
+			);
+			path = CathNowLiveActivity;
+			sourceTree = "<group>";
+		};
 		E260B3522E36D1B7000184C3 /* nowcath */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E2F5D98E2EA4162C00B6430E /* Exceptions for "nowcath" folder in "nowcath" target */,
+				E23E55902EA40A18000EB726 /* Exceptions for "nowcath" folder in "CathNowLiveActivityExtension" target */,
+			);
 			path = nowcath;
 			sourceTree = "<group>";
 		};
@@ -48,6 +114,15 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E23E555B2EA407C1000EB726 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E23E55632EA407C1000EB726 /* SwiftUI.framework in Frameworks */,
+				E23E55612EA407C1000EB726 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E260B34D2E36D1B7000184C3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,12 +147,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E23E555F2EA407C1000EB726 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E23E55602EA407C1000EB726 /* WidgetKit.framework */,
+				E23E55622EA407C1000EB726 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E260B3472E36D1B7000184C3 = {
 			isa = PBXGroup;
 			children = (
 				E260B3522E36D1B7000184C3 /* nowcath */,
 				E260B3652E36D1B8000184C3 /* cathnowTests */,
 				E260B36F2E36D1B8000184C3 /* cathnowUITests */,
+				E23E55642EA407C1000EB726 /* CathNowLiveActivity */,
+				E23E555F2EA407C1000EB726 /* Frameworks */,
 				E260B3512E36D1B7000184C3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +174,7 @@
 				E260B3502E36D1B7000184C3 /* nowcath.app */,
 				E260B3622E36D1B8000184C3 /* nowcathTests.xctest */,
 				E260B36C2E36D1B8000184C3 /* nowcathUITests.xctest */,
+				E23E555E2EA407C1000EB726 /* CathNowLiveActivityExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +182,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E23E555D2EA407C1000EB726 /* CathNowLiveActivityExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E23E55762EA407C3000EB726 /* Build configuration list for PBXNativeTarget "CathNowLiveActivityExtension" */;
+			buildPhases = (
+				E23E555A2EA407C1000EB726 /* Sources */,
+				E23E555B2EA407C1000EB726 /* Frameworks */,
+				E23E555C2EA407C1000EB726 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E23E55642EA407C1000EB726 /* CathNowLiveActivity */,
+			);
+			name = CathNowLiveActivityExtension;
+			packageProductDependencies = (
+			);
+			productName = CathNowLiveActivityExtension;
+			productReference = E23E555E2EA407C1000EB726 /* CathNowLiveActivityExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		E260B34F2E36D1B7000184C3 /* nowcath */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcath" */;
@@ -102,10 +211,12 @@
 				E260B34C2E36D1B7000184C3 /* Sources */,
 				E260B34D2E36D1B7000184C3 /* Frameworks */,
 				E260B34E2E36D1B7000184C3 /* Resources */,
+				E23E55792EA407C3000EB726 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E23E55732EA407C3000EB726 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				E260B3522E36D1B7000184C3 /* nowcath */,
@@ -173,6 +284,9 @@
 				LastSwiftUpdateCheck = 1640;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					E23E555D2EA407C1000EB726 = {
+						CreatedOnToolsVersion = 16.4;
+					};
 					E260B34F2E36D1B7000184C3 = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -203,11 +317,19 @@
 				E260B34F2E36D1B7000184C3 /* nowcath */,
 				E260B3612E36D1B8000184C3 /* nowcathTests */,
 				E260B36B2E36D1B8000184C3 /* nowcathUITests */,
+				E23E555D2EA407C1000EB726 /* CathNowLiveActivityExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E23E555C2EA407C1000EB726 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E260B34E2E36D1B7000184C3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +354,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E23E555A2EA407C1000EB726 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E260B34C2E36D1B7000184C3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +385,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E23E55732EA407C3000EB726 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E23E555D2EA407C1000EB726 /* CathNowLiveActivityExtension */;
+			targetProxy = E23E55722EA407C3000EB726 /* PBXContainerItemProxy */;
+		};
 		E260B3642E36D1B8000184C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E260B34F2E36D1B7000184C3 /* nowcath */;
@@ -269,6 +403,62 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		E23E55772EA407C3000EB726 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQZ63PCG8L;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CathNowLiveActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CathNowLiveActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathnow.CathNowLiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E23E55782EA407C3000EB726 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = BQZ63PCG8L;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CathNowLiveActivity/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CathNowLiveActivity;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathnow.CathNowLiveActivity;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		E260B3742E36D1B8000184C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -400,9 +590,11 @@
 				DEVELOPMENT_TEAM = BQZ63PCG8L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = nowcath/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cath Now";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -432,9 +624,11 @@
 				DEVELOPMENT_TEAM = BQZ63PCG8L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = nowcath/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cath Now";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -529,6 +723,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E23E55762EA407C3000EB726 /* Build configuration list for PBXNativeTarget "CathNowLiveActivityExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E23E55772EA407C3000EB726 /* Debug */,
+				E23E55782EA407C3000EB726 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "nowcath" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
