@@ -54,25 +54,25 @@
 		E23E555E2EA407C1000EB726 /* CathNowLiveActivityExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CathNowLiveActivityExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E23E55602EA407C1000EB726 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		E23E55622EA407C1000EB726 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		E260B3502E36D1B7000184C3 /* nowcath.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nowcath.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E260B3622E36D1B8000184C3 /* nowcathTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nowcathTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E260B36C2E36D1B8000184C3 /* nowcathUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nowcathUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E260B3502E36D1B7000184C3 /* cathrmdr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cathrmdr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E260B3622E36D1B8000184C3 /* cathrmdrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cathrmdrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E260B36C2E36D1B8000184C3 /* cathrmdrUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = cathrmdrUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		E23E55902EA40A18000EB726 /* Exceptions for "nowcath" folder in "CathNowLiveActivityExtension" target */ = {
+		E23E55902EA40A18000EB726 /* Exceptions for "cathrmdr" folder in "CathNowLiveActivityExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				CathNowActivityAttributes.swift,
 			);
 			target = E23E555D2EA407C1000EB726 /* CathNowLiveActivityExtension */;
 		};
-		E2F5D98E2EA4162C00B6430E /* Exceptions for "nowcath" folder in "nowcath" target */ = {
+		E2F5D98E2EA4162C00B6430E /* Exceptions for "cathrmdr" folder in "cathrmdr" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = E260B34F2E36D1B7000184C3 /* nowcath */;
+			target = E260B34F2E36D1B7000184C3 /* cathrmdr */;
 		};
 		E2F5D9912EA41AF200B6430E /* Exceptions for "CathNowLiveActivity" folder in "CathNowLiveActivityExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -92,13 +92,13 @@
 			path = CathNowLiveActivity;
 			sourceTree = "<group>";
 		};
-		E260B3522E36D1B7000184C3 /* nowcath */ = {
+		E260B3522E36D1B7000184C3 /* cathrmdr */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				E2F5D98E2EA4162C00B6430E /* Exceptions for "nowcath" folder in "nowcath" target */,
-				E23E55902EA40A18000EB726 /* Exceptions for "nowcath" folder in "CathNowLiveActivityExtension" target */,
+				E2F5D98E2EA4162C00B6430E /* Exceptions for "cathrmdr" folder in "cathrmdr" target */,
+				E23E55902EA40A18000EB726 /* Exceptions for "cathrmdr" folder in "CathNowLiveActivityExtension" target */,
 			);
-			path = nowcath;
+			path = cathrmdr;
 			sourceTree = "<group>";
 		};
 		E260B3652E36D1B8000184C3 /* cathnowTests */ = {
@@ -159,7 +159,7 @@
 		E260B3472E36D1B7000184C3 = {
 			isa = PBXGroup;
 			children = (
-				E260B3522E36D1B7000184C3 /* nowcath */,
+				E260B3522E36D1B7000184C3 /* cathrmdr */,
 				E260B3652E36D1B8000184C3 /* cathnowTests */,
 				E260B36F2E36D1B8000184C3 /* cathnowUITests */,
 				E23E55642EA407C1000EB726 /* CathNowLiveActivity */,
@@ -171,9 +171,9 @@
 		E260B3512E36D1B7000184C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E260B3502E36D1B7000184C3 /* nowcath.app */,
-				E260B3622E36D1B8000184C3 /* nowcathTests.xctest */,
-				E260B36C2E36D1B8000184C3 /* nowcathUITests.xctest */,
+				E260B3502E36D1B7000184C3 /* cathrmdr.app */,
+				E260B3622E36D1B8000184C3 /* cathrmdrTests.xctest */,
+				E260B36C2E36D1B8000184C3 /* cathrmdrUITests.xctest */,
 				E23E555E2EA407C1000EB726 /* CathNowLiveActivityExtension.appex */,
 			);
 			name = Products;
@@ -204,9 +204,9 @@
 			productReference = E23E555E2EA407C1000EB726 /* CathNowLiveActivityExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		E260B34F2E36D1B7000184C3 /* nowcath */ = {
+		E260B34F2E36D1B7000184C3 /* cathrmdr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcath" */;
+			buildConfigurationList = E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathrmdr" */;
 			buildPhases = (
 				E260B34C2E36D1B7000184C3 /* Sources */,
 				E260B34D2E36D1B7000184C3 /* Frameworks */,
@@ -219,18 +219,18 @@
 				E23E55732EA407C3000EB726 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				E260B3522E36D1B7000184C3 /* nowcath */,
+				E260B3522E36D1B7000184C3 /* cathrmdr */,
 			);
-			name = nowcath;
+			name = cathrmdr;
 			packageProductDependencies = (
 			);
 			productName = cathnow;
-			productReference = E260B3502E36D1B7000184C3 /* nowcath.app */;
+			productReference = E260B3502E36D1B7000184C3 /* cathrmdr.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E260B3612E36D1B8000184C3 /* nowcathTests */ = {
+		E260B3612E36D1B8000184C3 /* cathrmdrTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcathTests" */;
+			buildConfigurationList = E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathrmdrTests" */;
 			buildPhases = (
 				E260B35E2E36D1B8000184C3 /* Sources */,
 				E260B35F2E36D1B8000184C3 /* Frameworks */,
@@ -244,16 +244,16 @@
 			fileSystemSynchronizedGroups = (
 				E260B3652E36D1B8000184C3 /* cathnowTests */,
 			);
-			name = nowcathTests;
+			name = cathrmdrTests;
 			packageProductDependencies = (
 			);
 			productName = cathnowTests;
-			productReference = E260B3622E36D1B8000184C3 /* nowcathTests.xctest */;
+			productReference = E260B3622E36D1B8000184C3 /* cathrmdrTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E260B36B2E36D1B8000184C3 /* nowcathUITests */ = {
+		E260B36B2E36D1B8000184C3 /* cathrmdrUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcathUITests" */;
+			buildConfigurationList = E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathrmdrUITests" */;
 			buildPhases = (
 				E260B3682E36D1B8000184C3 /* Sources */,
 				E260B3692E36D1B8000184C3 /* Frameworks */,
@@ -267,11 +267,11 @@
 			fileSystemSynchronizedGroups = (
 				E260B36F2E36D1B8000184C3 /* cathnowUITests */,
 			);
-			name = nowcathUITests;
+			name = cathrmdrUITests;
 			packageProductDependencies = (
 			);
 			productName = cathnowUITests;
-			productReference = E260B36C2E36D1B8000184C3 /* nowcathUITests.xctest */;
+			productReference = E260B36C2E36D1B8000184C3 /* cathrmdrUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -300,7 +300,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "nowcath" */;
+			buildConfigurationList = E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "cathrmdr" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -314,9 +314,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E260B34F2E36D1B7000184C3 /* nowcath */,
-				E260B3612E36D1B8000184C3 /* nowcathTests */,
-				E260B36B2E36D1B8000184C3 /* nowcathUITests */,
+				E260B34F2E36D1B7000184C3 /* cathrmdr */,
+				E260B3612E36D1B8000184C3 /* cathrmdrTests */,
+				E260B36B2E36D1B8000184C3 /* cathrmdrUITests */,
 				E23E555D2EA407C1000EB726 /* CathNowLiveActivityExtension */,
 			);
 		};
@@ -392,12 +392,12 @@
 		};
 		E260B3642E36D1B8000184C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E260B34F2E36D1B7000184C3 /* nowcath */;
+			target = E260B34F2E36D1B7000184C3 /* cathrmdr */;
 			targetProxy = E260B3632E36D1B8000184C3 /* PBXContainerItemProxy */;
 		};
 		E260B36E2E36D1B8000184C3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E260B34F2E36D1B7000184C3 /* nowcath */;
+			target = E260B34F2E36D1B7000184C3 /* cathrmdr */;
 			targetProxy = E260B36D2E36D1B8000184C3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -422,7 +422,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathnow.CathNowLiveActivity;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathrmdr.CathNowLiveActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -450,7 +450,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathnow.CathNowLiveActivity;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathrmdr.CathNowLiveActivity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -590,7 +590,7 @@
 				DEVELOPMENT_TEAM = BQZ63PCG8L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = nowcath/Info.plist;
+				INFOPLIST_FILE = cathrmdr/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cath Rmdr";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -605,12 +605,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathnow;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathrmdr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -624,7 +624,7 @@
 				DEVELOPMENT_TEAM = BQZ63PCG8L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = nowcath/Info.plist;
+				INFOPLIST_FILE = cathrmdr/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Cath Rmdr";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
@@ -639,12 +639,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathnow;
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = net.tomw.cathrmdr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -663,7 +663,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nowcath.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nowcath";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cathrmdr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cathrmdr";
 			};
 			name = Debug;
 		};
@@ -682,7 +682,7 @@
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/nowcath.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/nowcath";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/cathrmdr.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/cathrmdr";
 			};
 			name = Release;
 		};
@@ -732,7 +732,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "nowcath" */ = {
+		E260B34B2E36D1B7000184C3 /* Build configuration list for PBXProject "cathrmdr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E260B3742E36D1B8000184C3 /* Debug */,
@@ -741,7 +741,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcath" */ = {
+		E260B3762E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathrmdr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E260B3772E36D1B8000184C3 /* Debug */,
@@ -750,7 +750,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcathTests" */ = {
+		E260B3792E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathrmdrTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E260B37A2E36D1B8000184C3 /* Debug */,
@@ -759,7 +759,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "nowcathUITests" */ = {
+		E260B37C2E36D1B8000184C3 /* Build configuration list for PBXNativeTarget "cathrmdrUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E260B37D2E36D1B8000184C3 /* Debug */,
