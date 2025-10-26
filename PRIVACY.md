@@ -8,7 +8,7 @@
 
 White Acre Software LLC is committed to **protecting your privacy** and ensuring the security of your personal information. This privacy policy explains our data practices for the **Cath Rmdr** application.
 
-*(Effective Date: September 2025)*
+*(Effective Date: October 2025)*
 
 ***
 
