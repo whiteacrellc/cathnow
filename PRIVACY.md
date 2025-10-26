@@ -6,7 +6,7 @@
 
 ## 💖 Our Commitment
 
-White Acre Software LLC is committed to **protecting your privacy** and ensuring the security of your personal information. This privacy policy explains our data practices for the **Cath Now** application.
+White Acre Software LLC is committed to **protecting your privacy** and ensuring the security of your personal information. This privacy policy explains our data practices for the **Cath Rmdr** application.
 
 *(Effective Date: September 2025)*
 
@@ -14,7 +14,7 @@ White Acre Software LLC is committed to **protecting your privacy** and ensuring
 
 ## 🚫 Zero Data Collection
 
-White Acre Software **does not collect, store, or transmit any personal data or usage information** from the **Cath Now** application.
+White Acre Software **does not collect, store, or transmit any personal data or usage information** from the **Cath Rmdr** application.
 
 * No personal health information is collected
 * No usage analytics or tracking data is gathered
@@ -47,7 +47,7 @@ The application requests only **essential system permissions** required for core
 
 ## 🔌 No Third-Party Services
 
-The **Cath Now** application **does not integrate** with any third-party services, analytics platforms, or advertising networks.
+The **Cath Rmdr** application **does not integrate** with any third-party services, analytics platforms, or advertising networks.
 
 * No third-party SDKs or frameworks that collect data
 * No advertising networks or tracking pixels
@@ -58,7 +58,7 @@ The **Cath Now** application **does not integrate** with any third-party service
 
 ## ⚠️ Medical Disclaimer
 
-The **Cath Now** application is designed as a **reminder tool** to assist with medical routine management.
+The **Cath Rmdr** application is designed as a **reminder tool** to assist with medical routine management.
 
 * This application is not a medical device
 * Always consult healthcare professionals for medical advice
@@ -69,7 +69,7 @@ The **Cath Now** application is designed as a **reminder tool** to assist with m
 
 ## 📧 Contact Information
 
-If you have questions about this privacy policy or our data practices, please contact **White Acre Software** at support@cathnow.com.
+If you have questions about this privacy policy or our data practices, please contact **White Acre Software** at support@cathrmdr.com.
 
 **Company: White Acre Software**
 
@@ -79,4 +79,4 @@ If you have questions about this privacy policy or our data practices, please co
 
 © 2025 White Acre Software LLC
 Last Updated: September 2025
-This privacy policy governs the use of the Cath Now application
+This privacy policy governs the use of the Cath Rmdr application

@@ -76,7 +76,7 @@ struct ContentView: View {
                                 .font(.system(size: 40))
                                 .foregroundStyle(Color.adaptivePrimary(themeManager))
                             
-                            Text("Cath Now")
+                            Text("Cath Rmdr")
                                 .font(.iosLargeTitle)
                                 .fontWeight(.bold)
                                 .foregroundStyle(Color.adaptivePrimary(themeManager))
@@ -425,7 +425,7 @@ struct ContentView: View {
     
     func scheduleRepeatingNotifications() {
         let content = UNMutableNotificationContent()
-        content.title = "Cath Now"
+        content.title = "Cath Rmdr"
         content.body = "Time to cath!"
         content.badge = 1
         
@@ -553,7 +553,7 @@ struct ContentView_Previews: PreviewProvider {
  
  2. Add the following to Info.plist:
  <key>CFBundleDisplayName</key>
- <string>Cath Now</string>
+ <string>Cath Rmdr</string>
  
  <key>NSUserNotificationsUsageDescription</key>
  <string>This app needs notification permission to remind you about catheter changes when the app is not active.</string>
@@ -565,13 +565,13 @@ struct ContentView_Previews: PreviewProvider {
  Create a "sounds" folder in your Xcode project and add these files:
  - sounds/alarm1.wav (your first alarm sound)
  - sounds/alarm2.wav (your second alarm sound)
- 
+
  Make sure to:
  - Add the sounds folder to your Xcode project bundle
  - Ensure the audio files are included in the app target
  - Use .wav format for best compatibility with notifications
  - Keep file sizes reasonable for app bundle size
- 
+
  4. New Audio Features:
  - Two selectable alarm sounds: Alarm 1 and Alarm 2
  - Audio files loaded from app bundle (sounds/alarm1.wav and sounds/alarm2.wav)
@@ -579,21 +579,21 @@ struct ContentView_Previews: PreviewProvider {
  - Clean menu-based settings interface
  - Comprehensive privacy page
  - Professional medical app design
- 
+
  5. UI Improvements:
  - Clean main interface focused on core functionality
  - Dropdown menu for settings and privacy access
  - Dedicated sound settings page with test functionality
  - Audio status indicators throughout the app
  - Graceful fallback to haptic feedback when audio unavailable
- 
+
  6. Technical Features:
  - Uses AVAudioPlayer for reliable audio file playback
  - Custom notification sounds for scheduled reminders
  - Proper audio session management
  - Error handling with system sound fallbacks
  - Memory-efficient audio loading and playback
- 
+
  The app now provides a professional medical reminder experience with custom audio files
  and a clean, organized interface suitable for medical use.
  */

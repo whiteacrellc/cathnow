@@ -9,9 +9,9 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-struct CathNowLiveActivity: Widget {
+struct CathRmdrLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: CathNowActivityAttributes.self) { context in
+        ActivityConfiguration(for: CathRmdrActivityAttributes.self) { context in
             // Lock screen/banner UI goes here
             LockScreenLiveActivityView(context: context)
         } dynamicIsland: { context in
@@ -66,7 +66,7 @@ struct CathNowLiveActivity: Widget {
                 Image(systemName: "cross.circle.fill")
                     .foregroundColor(.yellow)
             }
-            .widgetURL(URL(string: "cathnow://timer"))
+            .widgetURL(URL(string: "cathrmdr://timer"))
             .keylineTint(.yellow)
         }
     }
@@ -104,7 +104,7 @@ struct CathNowLiveActivity: Widget {
 }
 
 struct LockScreenLiveActivityView: View {
-    let context: ActivityViewContext<CathNowActivityAttributes>
+    let context: ActivityViewContext<CathRmdrActivityAttributes>
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {

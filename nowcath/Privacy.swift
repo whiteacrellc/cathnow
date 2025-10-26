@@ -47,7 +47,7 @@ struct PrivacyView: View {
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 15) {
-                                    Text("White Acre Software LLC is committed to protecting your privacy and ensuring the security of your personal information. This privacy policy explains our data practices for the Cath Now application.")
+                                    Text("White Acre Software LLC is committed to protecting your privacy and ensuring the security of your personal information. This privacy policy explains our data practices for the Cath Rmdr application.")
                                         .font(.subheadline)
                                         .foregroundStyle(.primary)
                                         .fixedSize(horizontal: false, vertical: true)
@@ -82,7 +82,7 @@ struct PrivacyView: View {
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 15) {
-                                    Text("White Acre Software LLC does not collect, store, or transmit any personal data or usage information from the Cath Now application.")
+                                    Text("White Acre Software LLC does not collect, store, or transmit any personal data or usage information from the Cath Rmdr application.")
                                         .font(.subheadline)
                                         .foregroundStyle(.primary)
                                         .fontWeight(.medium)
@@ -218,7 +218,7 @@ struct PrivacyView: View {
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 15) {
-                                    Text("The Cath Now application does not integrate with any third-party services, analytics platforms, or advertising networks.")
+                                    Text("The Cath Rmdr application does not integrate with any third-party services, analytics platforms, or advertising networks.")
                                         .font(.subheadline)
                                         .foregroundStyle(.primary)
                                         .fontWeight(.medium)
@@ -264,7 +264,7 @@ struct PrivacyView: View {
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 15) {
-                                    Text("The Cath Now application is designed as a reminder tool to assist with medical routine management.")
+                                    Text("The Cath Rmdr application is designed as a reminder tool to assist with medical routine management.")
                                         .font(.subheadline)
                                         .foregroundStyle(.primary)
                                     
@@ -309,7 +309,7 @@ struct PrivacyView: View {
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 15) {
-                                    Text("If you have questions about this privacy policy or our data practices, please contact White Acre Software at support@cathnow.com.")
+                                    Text("If you have questions about this privacy policy or our data practices, please contact White Acre Software at support@cathrmdr.com.")
                                         .font(.subheadline)
                                         .foregroundStyle(.primary)
                                     
@@ -343,7 +343,7 @@ struct PrivacyView: View {
                                 .font(.caption2)
                                 .foregroundStyle(.secondary)
                             
-                            Text("This privacy policy governs the use of the Cath Now application")
+                            Text("This privacy policy governs the use of the Cath Rmdr application")
                                 .font(.caption2)
                                 .foregroundStyle(.secondary)
                                 .multilineTextAlignment(.center)

@@ -35,13 +35,13 @@ class LiveActivityManager: ObservableObject {
         print("⏰ Next alarm time: \(nextAlarmTime)")
         print("🔄 Interval: \(intervalText) (\(intervalSeconds) seconds)")
 
-        let attributes = CathNowActivityAttributes(
+        let attributes = CathRmdrActivityAttributes(
             intervalDuration: intervalSeconds,
             intervalText: intervalText,
             createdAt: Date()
         )
 
-        let contentState = CathNowActivityAttributes.ContentState(
+        let contentState = CathRmdrActivityAttributes.ContentState(
             nextAlarmTime: nextAlarmTime,
             intervalText: intervalText,
             isActive: true
@@ -49,7 +49,7 @@ class LiveActivityManager: ObservableObject {
 
         do {
             print("🚀 Requesting Live Activity...")
-            let activity = try Activity<CathNowActivityAttributes>.request(
+            let activity = try Activity<CathRmdrActivityAttributes>.request(
                 attributes: attributes,
                 contentState: contentState,
                 pushType: nil
@@ -68,11 +68,11 @@ class LiveActivityManager: ObservableObject {
 
     func updateLiveActivity(nextAlarmTime: Date, intervalText: String) {
         guard #available(iOS 16.1, *),
-              let activity = currentActivity as? Activity<CathNowActivityAttributes> else {
+              let activity = currentActivity as? Activity<CathRmdrActivityAttributes> else {
             return
         }
 
-        let updatedContentState = CathNowActivityAttributes.ContentState(
+        let updatedContentState = CathRmdrActivityAttributes.ContentState(
             nextAlarmTime: nextAlarmTime,
             intervalText: intervalText,
             isActive: true
@@ -85,12 +85,12 @@ class LiveActivityManager: ObservableObject {
 
     func endLiveActivity() {
         guard #available(iOS 16.1, *),
-              let activity = currentActivity as? Activity<CathNowActivityAttributes> else {
+              let activity = currentActivity as? Activity<CathRmdrActivityAttributes> else {
             currentActivity = nil
             return
         }
 
-        let finalContentState = CathNowActivityAttributes.ContentState(
+        let finalContentState = CathRmdrActivityAttributes.ContentState(
             nextAlarmTime: Date(),
             intervalText: "",
             isActive: false

@@ -9,8 +9,8 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct CathNowLiveActivityBundle: WidgetBundle {
+struct CathRmdrLiveActivityBundle: WidgetBundle {
     var body: some Widget {
-        CathNowLiveActivity()
+        CathRmdrLiveActivity()
     }
 }

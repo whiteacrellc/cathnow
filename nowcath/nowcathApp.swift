@@ -2,7 +2,7 @@ import SwiftUI
 import UserNotifications
 
 @main
-struct CathNowApp: App {
+struct CathRmdrApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @StateObject private var themeManager = ThemeManager()
 

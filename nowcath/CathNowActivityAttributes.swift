@@ -1,7 +1,7 @@
 import ActivityKit
 import Foundation
 
-struct CathNowActivityAttributes: ActivityAttributes {
+struct CathRmdrActivityAttributes: ActivityAttributes {
     public struct ContentState: Codable, Hashable {
         var nextAlarmTime: Date
         var intervalText: String
