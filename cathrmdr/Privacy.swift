@@ -59,7 +59,7 @@ struct PrivacyView: View {
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 15) {
-                                    Text("White Acre Software LLC is committed to protecting your privacy and ensuring the security of your personal information. This privacy policy explains our data practices for the Cath Rmdr application.")
+                                    Text("WhiteAcre Software LLC is committed to protecting your privacy and ensuring the security of your personal information. This privacy policy explains our data practices for the Cath Rmdr application.")
                                         .font(.subheadline)
                                         .foregroundStyle(.primary)
                                         .fixedSize(horizontal: false, vertical: true)
