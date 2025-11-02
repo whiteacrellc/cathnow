@@ -22,7 +22,7 @@ struct CathRmdrLiveActivity: Widget {
                     HStack {
                         Image(systemName: "cross.circle.fill")
                             .foregroundColor(.yellow)
-                        Text("Cath Alert")
+                        Text("Cath Rmdr")
                             .font(.caption)
                             .fontWeight(.semibold)
                             .foregroundColor(.yellow)
@@ -112,7 +112,7 @@ struct LockScreenLiveActivityView: View {
                 Image(systemName: "cross.circle.fill")
                     .foregroundColor(.yellow)
                     .font(.title3)
-                Text("Cath Alert")
+                Text("Cath Rmdr")
                     .font(.headline)
                     .fontWeight(.semibold)
                     .foregroundColor(.yellow)
