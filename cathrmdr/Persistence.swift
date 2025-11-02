@@ -6,7 +6,7 @@
  * of White Acre Software LLC. You shall not disclose such
  * Confidential Information and shall use it only in accordance
  * with the terms of the license agreement you entered into with
- * White Acre Software LLC.
+ * WhiteAcre Software LLC.
  *
  * Year: 2025
  */
