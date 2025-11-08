@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 White Acre Software LLC
+ * Copyright (c) 2025 White Acre Software LLC
  * All rights reserved.
  *
  * This software is the confidential and proprietary information
@@ -13,6 +13,7 @@
 import SwiftUI
 
 // MARK: - App Settings Manager
+@MainActor
 class AppSettingsManager: ObservableObject {
     static let shared = AppSettingsManager()
 

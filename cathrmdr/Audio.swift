@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 White Acre Software LLC
+ * Copyright (c) 2025 White Acre Software LLC
  * All rights reserved.
  *
  * This software is the confidential and proprietary information
@@ -13,24 +13,35 @@
 import SwiftUI
 import AVFoundation
 
-class AudioManager {
+@MainActor
+class AudioManager: ObservableObject {
     static let shared = AudioManager()
-    
-    func requestAudioPermission(completion: @escaping (Bool) -> Void) {
-        AVAudioSession.sharedInstance().requestRecordPermission { granted in
-            DispatchQueue.main.async {
-                if granted {
-                    do {
-                        try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.duckOthers])
-                        try AVAudioSession.sharedInstance().setActive(true)
-                    } catch {
-                        print("Audio session setup failed: \(error)")
-                        completion(false)
-                        return
-                    }
-                }
-                completion(granted)
-            }
+    @Published var isAudioSessionActive = false
+
+    private init() {}
+
+    /// Sets up audio session for playback only (no microphone permission needed)
+    func setupAudioSession() -> Bool {
+        do {
+            // Set category to playback only - no microphone access needed
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.allowBluetooth])
+            try AVAudioSession.sharedInstance().setActive(true)
+            isAudioSessionActive = true
+            return true
+        } catch {
+            print("❌ Failed to set up audio session: \(error)")
+            isAudioSessionActive = false
+            return false
+        }
+    }
+
+    /// Deactivates audio session when no longer needed
+    func deactivateAudioSession() {
+        do {
+            try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+            isAudioSessionActive = false
+        } catch {
+            print("⚠️ Failed to deactivate audio session: \(error)")
         }
     }
 }

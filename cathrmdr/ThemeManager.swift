@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 White Acre Software LLC
+ * Copyright (c) 2025 White Acre Software LLC
  * All rights reserved.
  *
  * This software is the confidential and proprietary information
@@ -13,6 +13,7 @@
 import SwiftUI
 
 // MARK: - Theme Manager
+@MainActor
 class ThemeManager: ObservableObject {
     @Published var currentTheme: AppTheme = .dark
 
@@ -46,7 +47,12 @@ class ThemeManager: ObservableObject {
         case .light:
             return false
         case .auto:
-            // Follow system appearance
+            // Follow system appearance - get from active window scene
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                return window.traitCollection.userInterfaceStyle == .dark
+            }
+            // Fallback to UITraitCollection.current if window not available
             return UITraitCollection.current.userInterfaceStyle == .dark
         }
     }

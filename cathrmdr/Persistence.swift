@@ -1,17 +1,19 @@
 /*
- * Copyright (c) 2023 White Acre Software LLC
+ * Copyright (c) 2025 White Acre Software LLC
  * All rights reserved.
  *
  * This software is the confidential and proprietary information
  * of White Acre Software LLC. You shall not disclose such
  * Confidential Information and shall use it only in accordance
  * with the terms of the license agreement you entered into with
- * WhiteAcre Software LLC.
+ * White Acre Software LLC.
  *
  * Year: 2025
  */
 import CoreData
 
+/// NOTE: CoreData is currently not used in the app but kept for potential future features.
+/// Consider removing if not needed in the next release.
 struct PersistenceController {
     static let shared = PersistenceController()
 
@@ -26,25 +28,26 @@ struct PersistenceController {
         do {
             try viewContext.save()
         } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nsError = error as NSError
-            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            // Log error instead of crashing in preview
+            print("⚠️ Preview context save error: \(error.localizedDescription)")
         }
         return result
     }()
 
     let container: NSPersistentContainer
+    private(set) var loadError: Error?
 
     init(inMemory: Bool = false) {
         container = NSPersistentContainer(name: "nowcath")
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { [weak self] (storeDescription, error) in
             if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                // Log error instead of crashing - app can continue without CoreData
+                print("❌ CoreData load error: \(error.localizedDescription)")
+                print("   Store: \(storeDescription)")
+                self?.loadError = error
 
                 /*
                  Typical reasons for an error here include:
@@ -54,9 +57,12 @@ struct PersistenceController {
                  * The store could not be migrated to the current model version.
                  Check the error message to determine what the actual problem was.
                  */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         container.viewContext.automaticallyMergesChangesFromParent = true
+    }
+
+    var isLoaded: Bool {
+        return loadError == nil
     }
 }

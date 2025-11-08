@@ -3,6 +3,7 @@ import UserNotifications
 import AVFoundation
 import AudioToolbox
 import ActivityKit
+import Combine
 
 struct ContentView: View {
     @EnvironmentObject var themeManager: ThemeManager
@@ -26,9 +27,13 @@ struct ContentView: View {
 
     // Audio player for immediate sound feedback
     @State private var audioPlayer: AVAudioPlayer?
-    
+
     // Timer to update countdown every second for real-time updates
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State private var timerCancellable: AnyCancellable?
+
+    // Haptic feedback generators (prepared for reduced latency)
+    @State private var impactGenerator = UIImpactFeedbackGenerator(style: .medium)
+    @State private var notificationGenerator = UINotificationFeedbackGenerator()
     
     // Sound options
     let soundOptions = ["Alarm 1", "Alarm 2", "System Alert", "System Chime", "System Bell", "Default Ringtone", "Critical Alert", "SMS Tone"]
@@ -62,20 +67,23 @@ struct ContentView: View {
                         VStack(spacing: 15) {
                             HStack {
                                 Spacer()
-                                
+
                                 Button(action: { showingSettingsMenu = true }) {
                                     Image(systemName: "ellipsis.circle.fill")
                                         .font(.title2)
                                         .foregroundStyle(Color.adaptivePrimary(themeManager))
                                 }
                                 .buttonStyle(PlainButtonStyle())
+                                .accessibilityLabel("Settings menu")
+                                .accessibilityHint("Opens settings, sound options, and privacy policy")
                             }
                             .padding(.horizontal, 20)
                             .padding(.top, 10)
-                            
+
                             Image(systemName: "cross.circle.fill")
                                 .font(.system(size: 40))
                                 .foregroundStyle(Color.adaptivePrimary(themeManager))
+                                .accessibilityHidden(true)
                             
                             Text("Cath Rmdr")
                                 .font(.iosLargeTitle)
@@ -107,7 +115,7 @@ struct ContentView: View {
                                 
                                 HStack {
                                     Spacer()
-                                    
+
                                     TextField("HH:MM", text: $intervalText)
                                         .font(.system(size: 24, weight: .semibold, design: .monospaced))
                                         .foregroundColor(Color.adaptiveOnBackground(themeManager))
@@ -120,10 +128,12 @@ struct ContentView: View {
                                                 .stroke(Color.adaptivePrimary(themeManager), lineWidth: 2)
                                         )
                                         .shadow(color: Color.iosSystemFill.opacity(0.2), radius: 2, x: 0, y: 1)
-                                    
+                                        .accessibilityLabel("Alarm interval")
+                                        .accessibilityHint("Enter time in hours and minutes format, minimum 1 minute")
+
                                     Spacer()
                                 }
-                                
+
                                 Button(action: startButtonTapped) {
                                     HStack {
                                         Image(systemName: statusText.contains("active") ? "arrow.clockwise.circle.fill" : "play.circle.fill")
@@ -138,6 +148,8 @@ struct ContentView: View {
                                 ))
                                 .scaleEffect(1.0)
                                 .animation(.easeInOut(duration: 0.1), value: showingErrorAlert)
+                                .accessibilityLabel(statusText.contains("active") ? "Update alarm interval" : "Start alarm")
+                                .accessibilityHint(statusText.contains("active") ? "Updates the current alarm with the new interval" : "Starts repeating alarm notifications")
                             }
                             .padding(20)
                         } label: {
@@ -170,6 +182,7 @@ struct ContentView: View {
                                                 Color.adaptiveOnSurfaceVariant(themeManager) : Color.adaptiveError(themeManager)
                                         )
                                         .contentTransition(.numericText())
+                                        .accessibilityLabel(countdownText == "No alarm set" ? "No alarm set" : "Time until next alarm: \(countdownText)")
                                     
                                     Divider()
                                         .background(Color.adaptiveOutline(themeManager).opacity(0.5))
@@ -218,12 +231,16 @@ struct ContentView: View {
             }
             .navigationBarHidden(true)
         }
-        .onReceive(timer) { _ in
-            updateCountdown()
-        }
         .onAppear {
             updateCountdown()
             checkAudioPermission()
+            startTimer()
+            // Prepare haptic generators for reduced latency
+            impactGenerator.prepare()
+            notificationGenerator.prepare()
+        }
+        .onDisappear {
+            stopTimer()
         }
         .alert("Invalid Input", isPresented: $showingErrorAlert) {
             Button("OK") {
@@ -292,12 +309,22 @@ struct ContentView: View {
     func setupAudioSession() {
         do {
             // Set category to playback only - no microphone access needed
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.allowBluetooth])
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.allowBluetooth, .mixWithOthers])
             try AVAudioSession.sharedInstance().setActive(true)
             hasAudioPermission = true
         } catch {
-            print("Failed to set up audio session: \(error)")
+            print("❌ Failed to set up audio session: \(error.localizedDescription)")
             hasAudioPermission = false
+        }
+    }
+
+    func deactivateAudioSession() {
+        guard hasAudioPermission else { return }
+
+        do {
+            try AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        } catch {
+            print("⚠️ Failed to deactivate audio session: \(error.localizedDescription)")
         }
     }
     
@@ -310,19 +337,20 @@ struct ContentView: View {
                 return
             }
         }
-        
+
         playAlertSound()
-        
-        // Haptic feedback for test
-        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
-        impactFeedback.impactOccurred()
+
+        // Haptic feedback for test (using prepared generator)
+        impactGenerator.impactOccurred()
+        impactGenerator.prepare() // Prepare for next use
     }
     
     func playAlertSound() {
         guard hasAudioPermission else {
             // Fallback to haptic feedback only if no audio permission
-            let impactFeedback = UIImpactFeedbackGenerator(style: .heavy)
-            impactFeedback.impactOccurred()
+            let heavyGenerator = UIImpactFeedbackGenerator(style: .heavy)
+            heavyGenerator.prepare()
+            heavyGenerator.impactOccurred()
             return
         }
 
@@ -343,7 +371,7 @@ struct ContentView: View {
         case "Critical Alert":
             AudioServicesPlaySystemSound(1006) // System critical alert
         case "SMS Tone":
-            AudioServicesPlaySystemSound(1007) // SMS received sound
+            AudioServicesPlaySystemSound(1003) // SMS received sound (different from alert)
         default:
             playAudioFile(named: "alarm1.wav")
         }
@@ -378,7 +406,7 @@ struct ContentView: View {
         }
         
         guard let interval = parseTimeInterval(intervalText) else {
-            showErrorNotification(message: "Please enter time in HH:MM format (e.g., 4:00).")
+            showErrorNotification(message: "Please enter time in HH:MM format with at least 1 minute (e.g., 4:00).")
             return
         }
         
@@ -410,9 +438,9 @@ struct ContentView: View {
             playAlertSound()
         }
 
-        // Success haptic feedback
-        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
-        impactFeedback.impactOccurred()
+        // Success haptic feedback (using prepared generator)
+        impactGenerator.impactOccurred()
+        impactGenerator.prepare() // Prepare for next use
     }
     
     func parseTimeInterval(_ timeString: String) -> TimeInterval? {
@@ -424,16 +452,26 @@ struct ContentView: View {
               minutes >= 0, minutes <= 59 else {
             return nil
         }
-        
-        return TimeInterval(hours * 3600 + minutes * 60)
+
+        let totalSeconds = hours * 3600 + minutes * 60
+
+        // Validate minimum interval (at least 1 minute)
+        guard totalSeconds >= 60 else {
+            return nil
+        }
+
+        return TimeInterval(totalSeconds)
     }
     
     func scheduleRepeatingNotifications() {
+        // Clear any existing badge
+        UNUserNotificationCenter.current().setBadgeCount(0)
+
         let content = UNMutableNotificationContent()
         content.title = "Cath Rmdr"
         content.body = "Time to cath!"
         content.badge = 1
-        
+
         // Set notification sound based on selection
         switch selectedSoundOption {
         case "Alarm 1":
@@ -463,35 +501,58 @@ struct ContentView: View {
         default:
             content.sound = .default
         }
-        
+
         // Schedule multiple notifications (iOS limits to 64 pending notifications)
+        // We schedule 50 to leave room for other app notifications
         let now = Date()
         nextAlertDate = now.addingTimeInterval(intervalSeconds)
-        
-        for i in 1...50 { // Schedule 50 future notifications
+
+        // Batch notification scheduling for better performance
+        let notificationCenter = UNUserNotificationCenter.current()
+
+        for i in 1...50 {
             let triggerDate = now.addingTimeInterval(intervalSeconds * Double(i))
             let dateComponents = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second], from: triggerDate)
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            
+
             let request = UNNotificationRequest(identifier: "cathAlarm_\(i)", content: content, trigger: trigger)
-            
-            UNUserNotificationCenter.current().add(request) { error in
+
+            notificationCenter.add(request) { error in
                 if let error = error {
-                    print("Error scheduling notification \(i): \(error)")
+                    print("❌ Error scheduling notification \(i): \(error.localizedDescription)")
                 }
             }
         }
+
+        print("✅ Scheduled 50 notifications starting at \(nextAlertDate?.formatted() ?? "unknown")")
     }
     
+    func startTimer() {
+        // Cancel any existing timer
+        stopTimer()
+
+        // Create new timer using Combine
+        timerCancellable = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { _ in
+                updateCountdown()
+            }
+    }
+
+    func stopTimer() {
+        timerCancellable?.cancel()
+        timerCancellable = nil
+    }
+
     func updateCountdown() {
         guard let nextAlert = nextAlertDate, intervalSeconds > 0 else {
             countdownText = "No alarm set"
             return
         }
-        
+
         let now = Date()
         let timeRemaining = nextAlert.timeIntervalSince(now)
-        
+
         if timeRemaining <= 0 {
             // Time to reschedule - move to next interval
             let newNextAlert = now.addingTimeInterval(intervalSeconds)
@@ -510,15 +571,27 @@ struct ContentView: View {
                 playAlertSound()
             }
 
-            // Recursively call to calculate the new countdown
-            updateCountdown()
+            // Clear notification badge when alarm fires
+            UNUserNotificationCenter.current().setBadgeCount(0)
+
+            // Calculate next countdown without recursion
+            let nextTimeRemaining = newNextAlert.timeIntervalSince(Date())
+            if nextTimeRemaining > 0 {
+                let hours = Int(nextTimeRemaining) / 3600
+                let minutes = (Int(nextTimeRemaining) % 3600) / 60
+                let seconds = Int(nextTimeRemaining) % 60
+
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    countdownText = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+                }
+            }
             return
         }
-        
+
         let hours = Int(timeRemaining) / 3600
         let minutes = (Int(timeRemaining) % 3600) / 60
         let seconds = Int(timeRemaining) % 60
-        
+
         withAnimation(.easeInOut(duration: 0.2)) {
             countdownText = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         }
@@ -527,10 +600,10 @@ struct ContentView: View {
     func showErrorNotification(message: String) {
         errorMessage = message
         showingErrorAlert = true
-        
-        // Error haptic feedback
-        let notificationFeedback = UINotificationFeedbackGenerator()
-        notificationFeedback.notificationOccurred(.error)
+
+        // Error haptic feedback (using prepared generator)
+        notificationGenerator.notificationOccurred(.error)
+        notificationGenerator.prepare() // Prepare for next use
     }
 }
 

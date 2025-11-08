@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 White Acre Software LLC
+ * Copyright (c) 2025 White Acre Software LLC
  * All rights reserved.
  *
  * This software is the confidential and proprietary information
@@ -14,6 +14,7 @@ import ActivityKit
 import Foundation
 import UIKit
 
+@MainActor
 class LiveActivityManager: ObservableObject {
     static let shared = LiveActivityManager()
 
