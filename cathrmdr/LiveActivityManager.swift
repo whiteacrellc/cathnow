@@ -71,7 +71,7 @@ class LiveActivityManager: ObservableObject {
             print("🚀 Requesting Live Activity...")
             let activity = try Activity<CathRmdrActivityAttributes>.request(
                 attributes: attributes,
-                contentState: contentState,
+                content: .init(state: contentState, staleDate: nil),
                 pushType: nil
             )
 
@@ -99,7 +99,7 @@ class LiveActivityManager: ObservableObject {
         )
 
         Task {
-            await activity.update(using: updatedContentState)
+            await activity.update(.init(state: updatedContentState, staleDate: nil))
         }
     }
 
@@ -117,7 +117,7 @@ class LiveActivityManager: ObservableObject {
         )
 
         Task {
-            await activity.end(using: finalContentState, dismissalPolicy: .immediate)
+            await activity.end(.init(state: finalContentState, staleDate: nil), dismissalPolicy: .immediate)
             DispatchQueue.main.async {
                 self.currentActivity = nil
             }
