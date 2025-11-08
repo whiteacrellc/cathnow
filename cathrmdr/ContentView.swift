@@ -517,14 +517,6 @@ struct ContentView: View {
         withAnimation(.easeInOut(duration: 0.2)) {
             countdownText = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
         }
-
-        // Update Live Activity when minute changes (to keep Dynamic Island HH:MM current)
-        if #available(iOS 16.1, *), seconds == 0 { // Update only when minute changes
-            liveActivityManager.updateLiveActivity(
-                nextAlarmTime: nextAlert,
-                intervalText: intervalText
-            )
-        }
     }
     
     func showErrorNotification(message: String) {
