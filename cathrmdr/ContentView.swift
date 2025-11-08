@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var showingSettingsMenu = false
     @State private var showingPrivacyPage = false
     @State private var showingSoundSettings = false
+    @State private var showingAppSettings = false
 
     // Live Activity manager
     @StateObject private var liveActivityManager = LiveActivityManager.shared
@@ -246,8 +247,8 @@ struct ContentView: View {
                 showingSoundSettings = true
             }
 
-            Button("Theme: \(themeManager.currentTheme.displayName)") {
-                cycleTheme()
+            Button("App Settings") {
+                showingAppSettings = true
             }
 
             Button("Privacy Policy") {
@@ -269,6 +270,10 @@ struct ContentView: View {
                 testSoundAction: testSound,
                 setupAudioAction: setupAudioSession
             )
+        }
+        .sheet(isPresented: $showingAppSettings) {
+            AppSettingsView()
+                .environmentObject(themeManager)
         }
     }
     
