@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 White Acre Software LLC
+ * Copyright (c) 2025 White Acre Software LLC
  * All rights reserved.
  *
  * This software is the confidential and proprietary information
@@ -13,6 +13,7 @@
 import SwiftUI
 
 // MARK: - Theme Manager
+@MainActor
 class ThemeManager: ObservableObject {
     @Published var currentTheme: AppTheme = .dark
 
@@ -46,7 +47,12 @@ class ThemeManager: ObservableObject {
         case .light:
             return false
         case .auto:
-            // Follow system appearance
+            // Follow system appearance - get from active window scene
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                return window.traitCollection.userInterfaceStyle == .dark
+            }
+            // Fallback to UITraitCollection.current if window not available
             return UITraitCollection.current.userInterfaceStyle == .dark
         }
     }
@@ -243,102 +249,127 @@ extension Color {
     }
 
     // MARK: - Convenience Methods for Current Theme
+    @MainActor
     static func adaptivePrimary(_ themeManager: ThemeManager) -> Color {
         return dynamicPrimary(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOnPrimary(_ themeManager: ThemeManager) -> Color {
         return dynamicOnPrimary(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptivePrimaryContainer(_ themeManager: ThemeManager) -> Color {
         return dynamicPrimaryContainer(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOnPrimaryContainer(_ themeManager: ThemeManager) -> Color {
         return dynamicOnPrimaryContainer(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveSecondary(_ themeManager: ThemeManager) -> Color {
         return dynamicSecondary(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOnSecondary(_ themeManager: ThemeManager) -> Color {
         return dynamicOnSecondary(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveSecondaryContainer(_ themeManager: ThemeManager) -> Color {
         return dynamicSecondaryContainer(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveTertiary(_ themeManager: ThemeManager) -> Color {
         return dynamicTertiary(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveError(_ themeManager: ThemeManager) -> Color {
         return dynamicError(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOnError(_ themeManager: ThemeManager) -> Color {
         return dynamicOnError(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveErrorContainer(_ themeManager: ThemeManager) -> Color {
         return dynamicErrorContainer(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveSuccess(_ themeManager: ThemeManager) -> Color {
         return dynamicSuccess(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOnSuccess(_ themeManager: ThemeManager) -> Color {
         return dynamicOnSuccess(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveSuccessContainer(_ themeManager: ThemeManager) -> Color {
         return dynamicSuccessContainer(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveWarning(_ themeManager: ThemeManager) -> Color {
         return dynamicWarning(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOnWarning(_ themeManager: ThemeManager) -> Color {
         return dynamicOnWarning(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveWarningContainer(_ themeManager: ThemeManager) -> Color {
         return dynamicWarningContainer(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveBackground(_ themeManager: ThemeManager) -> Color {
         return dynamicBackground(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOnBackground(_ themeManager: ThemeManager) -> Color {
         return dynamicOnBackground(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveSurface(_ themeManager: ThemeManager) -> Color {
         return dynamicSurface(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOnSurface(_ themeManager: ThemeManager) -> Color {
         return dynamicOnSurface(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveSurfaceVariant(_ themeManager: ThemeManager) -> Color {
         return dynamicSurfaceVariant(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOnSurfaceVariant(_ themeManager: ThemeManager) -> Color {
         return dynamicOnSurfaceVariant(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOutline(_ themeManager: ThemeManager) -> Color {
         return dynamicOutline(isDark: themeManager.isDarkMode)
     }
 
+    @MainActor
     static func adaptiveOutlineVariant(_ themeManager: ThemeManager) -> Color {
         return dynamicOutlineVariant(isDark: themeManager.isDarkMode)
     }
