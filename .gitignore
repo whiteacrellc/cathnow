@@ -123,6 +123,7 @@ google-services.json
 
 # Coverage
 coverage/
+node_modules/
 
 # Symbols
 app.*.symbols
