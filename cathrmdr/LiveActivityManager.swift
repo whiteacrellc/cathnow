@@ -27,6 +27,13 @@ class LiveActivityManager: ObservableObject {
             return
         }
 
+        // Check user preferences
+        let settingsManager = AppSettingsManager.shared
+        guard settingsManager.showDynamicIsland || settingsManager.showLockScreen else {
+            print("⏭️ Live Activity disabled in settings")
+            return
+        }
+
         print("🔄 Starting Live Activity...")
         print("📱 iOS Version: \(UIDevice.current.systemVersion)")
 
