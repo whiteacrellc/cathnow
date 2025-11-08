@@ -14,7 +14,7 @@ import CoreData
 
 /// NOTE: CoreData is currently not used in the app but kept for potential future features.
 /// Consider removing if not needed in the next release.
-struct PersistenceController {
+class PersistenceController {
     static let shared = PersistenceController()
 
     @MainActor
